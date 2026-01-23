@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快帶科技有限公司 | EATING-OUT</title>
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.jpg" type="image/jpeg">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome (圖示) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<style>
+/* --- 聯絡我們專用樣式 --- */
+
+/* 變數設定 (確保與全站一致) */
+:root {
+    --primary-yellow: #FFD700;
+    --hover-yellow: #E6C200;
+    --bg-black: #121212; /* 網頁背景 */
+    --bg-card: #222222;  /* 表單卡片背景 */
+    --input-bg: #333333; /* 輸入框背景 */
+    --text-white: #FFFFFF;
+    --text-gray: #CCCCCC;
+    --border-color: #444444;
+}
+
+/* 1. 頁面標題 Hero 區塊 */
+.contact-hero {
+    text-align: center;
+    padding: 80px 20px;
+    background-color: #000;
+    /* 模擬附圖的網格紋理，若無圖片可使用純黑或漸層 */
+    background-image: radial-gradient(#333 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.contact-hero h1 {
+    font-size: 3rem;
+    color: var(--primary-yellow);
+    margin-bottom: 15px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.contact-hero p {
+    color: var(--text-white);
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+/* 2. 主要內容容器 (雙欄佈局) */
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 左資訊、右表單 */
+    gap: 60px;
+    align-items: start;
+}
+
+/* --- 左側：公司資訊 --- */
+.contact-info h2 {
+    font-size: 2rem;
+    color: var(--primary-yellow);
+    margin-bottom: 10px;
+    display: inline-block;
+    border-bottom: 3px solid var(--primary-yellow);
+    padding-bottom: 5px;
+}
+
+.info-intro {
+    color: var(--text-gray);
+    margin-bottom: 30px;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+.info-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 40px;
+}
+
+.info-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    color: var(--text-gray);
+    font-size: 1rem;
+}
+
+.info-list i {
+    color: var(--primary-yellow);
+    width: 25px;
+    margin-right: 10px;
+    font-size: 1.1rem;
+}
+
+/* 地圖 Placeholder */
+.map-placeholder {
+    width: 100%;
+    height: 300px;
+    background-color: #333;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+    border: 1px solid #444;
+}
+.map-placeholder i {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+/* --- 右側：聯絡表單 --- */
+.form-card {
+    background-color: var(--bg-card);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #ddd;
+    font-size: 0.95rem;
+}
+
+.form-label span {
+    color: #ff4d4d; /* 必填紅色星號 */
+    margin-left: 4px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.3s;
+}
+
+.form-control::placeholder {
+    color: #666;
+}
+
+.form-control:focus {
+    border-color: var(--primary-yellow);
+    background-color: #444;
+}
+
+/* 下拉選單樣式優化 */
+select.form-control {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FFD700' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 16px;
+    color: #fff;
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* 送出按鈕 */
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--primary-yellow);
+    color: #000;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background-color: var(--hover-yellow);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+}
+
+.submit-btn:disabled {
+    background-color: #555;
+    color: #888;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* RWD 手機版適配 */
+@media (max-width: 900px) {
+    .contact-container {
+        grid-template-columns: 1fr; /* 轉為單欄 */
+        gap: 40px;
+    }
+    .form-card {
+        padding: 25px;
+    }
+    .contact-hero h1 {
+        font-size: 2.2rem;
+    }
+}
+
+</style>
+</head>
+<body>
+  <!-- 導航欄 (Header) -->
+    <header>
+        <div class="container nav-wrapper">
+            <!-- Logo 區 -->
+            <a href="index.html" class="brand-logo">
+                <img src="logo.png" alt="EATING-OUT Logo">
+                <span class="brand-text">快帶科技有限公司</span>
+            </a>
+
+            <!-- 手機版漢堡按鈕 -->
+            <div class="mobile-toggle" id="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+
+            <!-- 選單連結 -->
+            <ul class="nav-menu" id="nav-menu">
+                
+                <!-- 1. 首頁 (含下拉) -->
+                <li class="dropdown">
+                    <a href="index.html" class="active">首頁 <i class="fas fa-chevron-down toggle-icon"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#about-section">關於我們</a></li>
+                        <li><a href="#timeline-section">品牌歷程</a></li>
+                    </ul>
+                </li>
+
+                <!-- 2. 產品服務 (多層下拉) -->
+                <li class="dropdown">
+                    <a href="#">產品服務 <i class="fas fa-chevron-down toggle-icon"></i></a>
+                    <ul class="dropdown-menu">
+                        <!-- 同等級項目 1 -->
+                        <li><a href="insights.html">Insights 洞察商家檔案數據</a></li>
+                        
+                        <!-- 同等級項目 2 (含子選單) -->
+                        <li class="dropdown-submenu">
+                            <a href="#" class="submenu-toggle">EATING-OUT 線上點餐 <i class="fas fa-chevron-right arrow-right"></i></a>
+                            <!-- 第三層選單 -->
+                            <ul class="dropdown-menu submenu">
+                                <li><a href="restaurant.html">餐廳端介紹</a></li>
+                                <li><a href="customer.html">顧客端介紹</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- 3. 投資人 -->
+                <li><a href="investor.html">投資人專區</a></li>
+
+                <!-- 4. 常見問題 -->
+                <li><a href="faq.html">常見問題</a></li>
+
+                <!-- 5. 聯絡我們 (按鈕) -->
+                <li><a href="contact.html" class="btn btn-primary nav-btn">聯絡我們</a></li>
+            </ul>
+        </div>
+    </header>
+
+<!-- 1. 聯絡我們 Hero 標題 -->
+<section class="contact-hero">
+    <h1>聯絡我們</h1>
+    <p>無論是業務合作、餐廳上架或投資洽談，歡迎隨時與我們聯繫</p>
+</section>
+
+<!-- 2. 主要內容區塊 -->
+<div class="contact-container">
+    
+    <!-- 左側：公司資訊 -->
+    <div class="contact-info">
+        <h2>快帶科技有限公司</h2>
+        <p class="info-intro">我們位於台灣的美食之都——台南，致力於用科技傳承美味。</p>
+        
+        <ul class="info-list">
+            <li><i class="fas fa-map-marker-alt"></i> 地址：台南市中西區民生路二段76號4樓A11</li>
+            <li><i class="fas fa-phone-alt"></i> 電話：06-7030731</li>
+            <li><i class="fas fa-envelope"></i> 信箱：helenhsu@eating-out.co</li>
+            <li><i class="fas fa-clock"></i> 時間：週一至週五 09:30 - 18:30</li>
+        </ul>
+
+        <!-- Google Map Placeholder -->
+     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.775429546111!2d120.1971075!3d22.9952841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e77bdef7b7119%3A0x91e72959600111ac!2z5b-r5bi256eR5oqA5pyJ6ZmQ5YWs5Y-4!5e0!3m2!1szh-TW!2stw!4v1768799077800!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <!-- 右側：聯絡表單 -->
+    <div class="form-card">
+        <form id="contactForm" name="contactForm">
+            
+            <!-- 姓名 -->
+            <div class="form-group">
+                <label for="name" class="form-label">您的姓名 / 稱呼 <span>*</span></label>
+                <input type="text" id="name" name="姓名" class="form-control" placeholder="請輸入您的姓名" required>
+            </div>
+
+            <!-- 電話 -->
+            <div class="form-group">
+                <label for="phone" class="form-label">聯絡電話 <span>*</span></label>
+                <input type="tel" id="phone" name="電話" class="form-control" placeholder="請輸入手機或市話" required>
+            </div>
+
+            <!-- 信箱 -->
+            <div class="form-group">
+                <label for="email" class="form-label">電子信箱 <span>*</span></label>
+                <input type="email" id="email" name="信箱" class="form-control" placeholder="example@email.com" required>
+            </div>
+
+            <!-- 主旨 -->
+            <div class="form-group">
+                <label for="subject" class="form-label">諮詢主旨 <span>*</span></label>
+                <select id="subject" name="主旨" class="form-control" required>
+                    <option value="" disabled selected>請選擇主旨</option>
+                    <option value="餐廳上架諮詢">餐廳上架諮詢</option>
+                    <option value="平台使用操作">平台使用操作</option>
+                    <option value="投資人關係">投資人關係</option>
+                    <option value="帳戶問題">帳戶問題</option>
+                    <option value="其他合作提案">其他合作提案</option>
+                </select>
+            </div>
+
+            <!-- 時間 -->
+            <div class="form-group">
+                <label for="time" class="form-label">方便聯繫時間 <span>*</span></label>
+                <input type="text" id="time" name="聯繫時間" class="form-control" placeholder="例如：平日下午 2:00 - 5:00" required>
+            </div>
+
+            <!-- 內容 -->
+            <div class="form-group">
+                <label for="message" class="form-label">留言內容 <span>*</span></label>
+                <textarea id="message" name="內容" class="form-control" placeholder="請描述你的需求..." required></textarea>
+            </div>
+
+            <button type="submit" id="submitButton" class="submit-btn">送出訊息</button>
+        </form>
+    </div>
+
+</div>
+
+ 
+ <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-layout">
+            
+            <!-- 1. 公司資訊 -->
+ <div class="footer-info">
+                <div class="footer-logo">
+                    <img src="logo.png" alt="EATING-OUT">
+                    <span>快帶科技</span>
+                </div>
+                <h4 class="company-name">快帶科技有限公司</h4>
+                <ul class="info-list">
+                    <li><i class="fas fa-id-card"></i> 統編：90249191</li>
+                    <li><i class="fas fa-map-marker-alt"></i> 地址：台南市中西區民生路二段76號4樓A11</li>
+                    <li><i class="fas fa-phone-alt"></i> 電話：06-7030731</li>
+                    <li><i class="fas fa-envelope"></i> 信箱：support@eating-out.co</li>
+                </ul>
+            </div>
+
+            <!-- 2. 網站地圖 (使用 Grid 雙欄) -->
+            <div class="footer-sitemap">
+                <h3>網站地圖</h3>
+                <div class="sitemap-grid">
+                    <!-- 左欄 -->
+                    <ul class="col-left">
+                        <li><a href="index.html">品牌首頁</a></li>
+                        <li><a href="index.html#about-section">關於我們</a></li>
+                        <li><a href="insights.html">EO Insight</a></li>
+                        <li><a href="restaurant.html">餐廳端服務</a></li>
+                    </ul>
+                    <!-- 右欄 -->
+                    <ul class="col-right">
+                        <li><a href="customer.html">顧客端服務</a></li>
+                        <li><a href="investor.html">投資人專區</a></li>
+                        <li><a href="faq.html">常見問題</a></li>
+                        <li><a href="contact.html">聯絡我們</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 3. 條款與社群 -->
+           <div class="footer-social">
+                <h3>條款與社群</h3>
+                <ul>
+                    <li><a href="https://www.privacypolicies.com/live/3c39b265-99a9-4bb6-9d44-1a0d38e95668" target="_blank">服務條款</a></li>
+                    <li><a href="https://www.privacypolicies.com/live/0a9ea377-a2b5-4dcc-b830-562689baf47e" target="_blank">隱私權政策</a></li>
+                </ul>
+                <div class="social-icons-group">
+                    <a href="https://www.facebook.com/eatingoutTW" target="_blank" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/eatingouttw/" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
+                    <a href="https://line.me/R/ti/p/@518vmbpw?oat_content=url" target="_blank" class="social-btn"><i class="fab fa-line"></i></a>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="copyright">
+            &copy; 2026 EATING-OUT Technology Co., Ltd. All Rights Reserved.
+        </div>
+    </div>
+</footer>
+
+
+    <!-- JS 邏輯 -->
+<script src="script.js">
+// --- 聯絡表單送出功能 (Google Apps Script) ---
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxJq61fpxTZs21eDe1CewQ_4sqXKMTfQ3ZFXH1MsZHaM2lbVejNThMXH8Njb_mMdl4G/exec';
+    
+    const form = document.forms['contactForm'];
+    const submitBtn = document.getElementById('submitButton');
+
+    if (form) { // 確保頁面上有表單才執行
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            
+            // 1. 按鈕變更狀態
+            submitBtn.disabled = true;
+            submitBtn.innerText = "資料傳送中...";
+
+            // 2. 發送資料
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                // 3. 成功後處理
+                alert("感謝您的填寫！我們會盡快與您聯繫。");
+                form.reset(); // 清空表單
+                submitBtn.disabled = false;
+                submitBtn.innerText = "送出訊息";
+            })
+            .catch(error => {
+                // 4. 失敗處理
+                console.error('Error!', error.message);
+                alert("傳送失敗，請稍後再試，或直接聯繫我們。");
+                submitBtn.disabled = false;
+                submitBtn.innerText = "送出訊息";
+            });
+        });
+    }
+   
+    </script>
+
+</body>
+</html>

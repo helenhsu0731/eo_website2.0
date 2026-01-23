@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快帶科技有限公司 | EATING-OUT</title>
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.jpg" type="image/jpeg">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome (圖示) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<style>
+/* 1. 背景設定 (深色建築底圖 + 遮罩) */
+.investor-section {
+    position: relative;
+    min-height: 100vh; /* 確保佔滿螢幕高度 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 20px;
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)),
+        url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* 視差滾動效果 */
+}
+
+/* 2. 玻璃質感卡片 */
+.investor-card {
+    background: rgba(30, 30, 30, 0.65); /* 半透明深灰 */
+    backdrop-filter: blur(12px); /* 毛玻璃模糊 */
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 215, 0, 0.3); /* 淡黃色邊框 */
+    border-radius: 8px;
+    padding: 60px;
+    max-width: 900px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* 3. 文字內容 */
+.investor-card h2 {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 25px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.investor-desc {
+    color: #ddd;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 分隔線 */
+.investor-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #555, transparent);
+    margin: 30px 0;
+    width: 100%;
+}
+
+/* 4. 條列式清單 */
+.investor-list {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    max-width: 750px;
+    margin: 0 auto 50px auto;
+}
+
+.investor-list li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    color: #f0f0f0;
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.investor-list i {
+    color: var(--primary-yellow); /* 品牌黃 */
+    font-size: 1.2rem;
+    margin-right: 15px;
+    margin-top: 4px; /* 對齊文字首行 */
+    flex-shrink: 0;
+}
+
+/* 5. 按鈕群組 */
+.investor-btns {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* 實心黃按鈕 */
+.btn-invest-primary {
+    background-color: var(--primary-yellow);
+    color: #000;
+    padding: 12px 40px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+.btn-invest-primary:hover {
+    background-color: var(--hover-yellow);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+}
+
+/* 空心白按鈕 */
+.btn-invest-outline {
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 10px 30px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-invest-outline:hover {
+    background-color: #fff;
+    color: #000;
+    transform: translateY(-2px);
+}
+
+/* RWD 手機版適配 */
+@media (max-width: 768px) {
+    .investor-card { padding: 40px 20px; }
+    .investor-card h2 { font-size: 2rem; }
+    .investor-desc { font-size: 1rem; text-align: left; }
+    .investor-btns { flex-direction: column; width: 100%; }
+    .btn-invest-primary, .btn-invest-outline { width: 100%; justify-content: center; }
+}
+
+</style>
+</head>
+<body>
+  <!-- 導航欄 (Header) -->
+    <header>
+        <div class="container nav-wrapper">
+            <!-- Logo 區 -->
+            <a href="index.html" class="brand-logo">
+                <img src="logo.png" alt="EATING-OUT Logo">
+                <span class="brand-text">快帶科技有限公司</span>
+            </a>
+
+            <!-- 手機版漢堡按鈕 -->
+            <div class="mobile-toggle" id="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+
+            <!-- 選單連結 -->
+            <ul class="nav-menu" id="nav-menu">
+                
+                <!-- 1. 首頁 (含下拉) -->
+                <li class="dropdown">
+                    <a href="index.html" class="active">首頁 <i class="fas fa-chevron-down toggle-icon"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#about-section">關於我們</a></li>
+                        <li><a href="#timeline-section">品牌歷程</a></li>
+                    </ul>
+                </li>
+
+                <!-- 2. 產品服務 (多層下拉) -->
+                <li class="dropdown">
+                    <a href="#">產品服務 <i class="fas fa-chevron-down toggle-icon"></i></a>
+                    <ul class="dropdown-menu">
+                        <!-- 同等級項目 1 -->
+                        <li><a href="insights.html">Insights 洞察商家檔案數據</a></li>
+                        
+                        <!-- 同等級項目 2 (含子選單) -->
+                        <li class="dropdown-submenu">
+                            <a href="#" class="submenu-toggle">EATING-OUT 線上點餐 <i class="fas fa-chevron-right arrow-right"></i></a>
+                            <!-- 第三層選單 -->
+                            <ul class="dropdown-menu submenu">
+                                <li><a href="restaurant.html">餐廳端介紹</a></li>
+                                <li><a href="customer.html">顧客端介紹</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- 3. 投資人 -->
+                <li><a href="investor.html">投資人專區</a></li>
+
+                <!-- 4. 常見問題 -->
+                <li><a href="faq.html">常見問題</a></li>
+
+                <!-- 5. 聯絡我們 (按鈕) -->
+                <li><a href="contact.html" class="btn btn-primary nav-btn">聯絡我們</a></li>
+            </ul>
+        </div>
+    </header>
+
+<!-- 投資人專區 Section -->
+<section class="investor-section">
+    <div class="investor-card">
+        <h2>投資人專區</h2>
+        <p class="investor-desc">
+            EATING-OUT 正處於高速成長期，我們正在尋找具備遠見的合作夥伴與投資人，共同佈局智慧餐飲的未來版圖。若您對我們的商業模式感興趣，歡迎索取投資簡報 (Pitch Deck)。
+        </p>
+
+        <div class="investor-divider"></div>
+
+        <ul class="investor-list">
+            <li>
+                <i class="fas fa-check-circle"></i>
+                <span>具備投資實績，特別是針對軟體類或 SaaS Model 產品。</span>
+            </li>
+            <li>
+                <i class="fas fa-check-circle"></i>
+                <span>能夠提供初步的投資計畫，包含資金來源、投資預算與退場條件。</span>
+            </li>
+            <li>
+                <i class="fas fa-check-circle"></i>
+                <span>參與式投資，能夠在投資後定期與團隊保持緊密聯繫，並針對團隊在營運上的問題提供建議或關鍵資源。</span>
+            </li>
+            <li>
+                <i class="fas fa-check-circle"></i>
+                <span>認同我們的發展策略與目標，願意與快帶科技長期共贏。</span>
+            </li>
+        </ul>
+
+        <div class="investor-divider"></div>
+
+        <div class="investor-btns">
+            <!-- 連結至聯絡我們頁面 -->
+            <a href="contact.html" class="btn-invest-primary">
+                聯繫關係部門
+            </a>
+            
+            <!-- 下載按鈕 (觸發 JS) -->
+            <button onclick="checkPasswordAndDownload()" class="btn-invest-outline">
+                <i class="fas fa-download"></i> 下載投資簡報 (需權限)
+            </button>
+        </div>
+    </div>
+</section>
+
+
+ <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-layout">
+            
+            <!-- 1. 公司資訊 -->
+ <div class="footer-info">
+                <div class="footer-logo">
+                    <img src="logo.png" alt="EATING-OUT">
+                    <span>快帶科技</span>
+                </div>
+                <h4 class="company-name">快帶科技有限公司</h4>
+                <ul class="info-list">
+                    <li><i class="fas fa-id-card"></i> 統編：90249191</li>
+                    <li><i class="fas fa-map-marker-alt"></i> 地址：台南市中西區民生路二段76號4樓A11</li>
+                    <li><i class="fas fa-phone-alt"></i> 電話：06-7030731</li>
+                    <li><i class="fas fa-envelope"></i> 信箱：support@eating-out.co</li>
+                </ul>
+            </div>
+
+            <!-- 2. 網站地圖  -->
+            <div class="footer-sitemap">
+                <h3>網站地圖</h3>
+                <div class="sitemap-grid">
+                    <!-- 左欄 -->
+                    <ul class="col-left">
+                        <li><a href="index.html">品牌首頁</a></li>
+                        <li><a href="index.html#about-section">關於我們</a></li>
+                        <li><a href="insights.html">EO Insight</a></li>
+                        <li><a href="restaurant.html">餐廳端服務</a></li>
+                    </ul>
+                    <!-- 右欄 -->
+                    <ul class="col-right">
+                        <li><a href="customer.html">顧客端服務</a></li>
+                        <li><a href="investor.html">投資人專區</a></li>
+                        <li><a href="faq.html">常見問題</a></li>
+                        <li><a href="contact.html">聯絡我們</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 3. 條款與社群 -->
+           <div class="footer-social">
+                <h3>條款與社群</h3>
+                <ul>
+                    <li><a href="https://www.privacypolicies.com/live/3c39b265-99a9-4bb6-9d44-1a0d38e95668" target="_blank">服務條款</a></li>
+                    <li><a href="https://www.privacypolicies.com/live/0a9ea377-a2b5-4dcc-b830-562689baf47e" target="_blank">隱私權政策</a></li>
+                </ul>
+                <div class="social-icons-group">
+                    <a href="https://www.facebook.com/eatingoutTW" target="_blank" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/eatingouttw/" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
+                    <a href="https://line.me/R/ti/p/@518vmbpw?oat_content=url" target="_blank" class="social-btn"><i class="fab fa-line"></i></a>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="copyright">
+            &copy; 2026 EATING-OUT Technology Co., Ltd. All Rights Reserved.
+        </div>
+    </div>
+</footer>
+
+
+<script src="script.js">
+// --- 投資人專區：密碼驗證下載功能 ---
+function checkPasswordAndDownload() {
+    // 1. 設定簡報的雲端連結 (請在此處填入真實連結)
+    const cloudFileUrl = "https://drive.google.com/file/d/您的檔案ID/view?usp=sharing"; 
+
+    // 2. 彈出輸入視窗
+    const password = prompt("請輸入訪問密碼以已下載投資簡報：", "");
+
+    // 3. 驗證密碼
+    if (password === "90249191") {
+        alert("密碼正確！即將開啟簡報檔案...");
+        window.open(cloudFileUrl, '_blank'); // 在新分頁開啟連結
+    } else if (password !== null) {
+        // 如果使用者按了「確定」但密碼錯誤 (password !== null 代表不是按取消)
+        alert("密碼錯誤，請聯繫關係部門獲取權限。");
+    }
+}
+    </script>
+
+</body>
+</html>

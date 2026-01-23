@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快帶科技有限公司 | EATING-OUT</title>
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.jpg" type="image/jpeg">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome (圖示) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<style>
+
+/* 1. Hero 區塊 */
+.rest-hero-section {
+    position: relative;
+    background: url('kitchen-dark.png') no-repeat center center/cover;
+    min-height: 650px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    margin-top: -72px; /* 頂到 header */
+    padding-top: 72px; /* 補回 header 遮擋的空間 */
+}
+
+
+.hero-overlay {display: none; }
+.rest-hero-section .container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
+
+.hero-top-deco {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px; /* 線與字的距離 */
+    margin-bottom: 10px;
+}
+
+.deco-line {
+    display: block;
+    width: 150px;      /* 線條長度 */
+    height: 1.5px;      /* 線條粗細 */
+    background-color: #fff;
+    opacity: 0.8;
+}
+
+.hero-top-deco h4 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin: 0;
+    letter-spacing: 2px;
+    color: #fff;
+    white-space: nowrap; 
+}
+
+/* --- 主標題 --- */
+.rest-hero-section h1 {
+    font-size: 4.5rem; 
+    font-weight: 900;
+    margin: 15px 0 25px 0;
+    line-height: 1.1;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+}
+
+/* --- 下方副標 --- */
+.hero-sub {
+    font-size: 1.8rem;
+    font-weight: 300; 
+    letter-spacing: 3px;
+    color: #eee;
+    margin: 0;
+}
+
+.highlight {
+    color: var(--primary-yellow);
+    font-weight: 700; 
+    margin-left: 5px; 
+}
+
+/* --- RWD 手機版微調 --- */
+@media (max-width: 768px) {
+    .rest-hero-section {
+        min-height: 500px; /* 手機版高度適度縮減 */
+    }
+    
+    .deco-line { width: 85px; } /* 線條縮短 */
+    .hero-top-deco h4 { font-size: 1rem; }
+    .rest-hero-section h1 { font-size: 2.6rem; }
+    .hero-sub {
+        font-size: 1.2rem;
+        letter-spacing: 1px; /* 手機版間距縮小以免斷行太嚴重 */
+        line-height: 1.6;
+        padding: 0 10px;
+    }
+}
+/* 2. 全通路引流 (Flip Card) */
+.flip-card-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 40px;
+}
+
+.flip-card {
+    background-color: transparent;
+    width: 100%; 
+    height: 320px; /* 稍微拉高一點，讓滿版圖更好看 */
+    perspective: 1000px; 
+}
+
+.flip-card-inner {
+    position: relative; 
+    width: 100%; 
+    height: 100%; 
+    text-align: center;
+    transition: transform 0.6s; 
+    transform-style: preserve-3d;
+    border-radius: 15px; /* 圓角 */    
+    -webkit-transform: translate3d(0,0,0); 
+}
+
+/* Hover 翻轉效果 */
+.flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+
+/* --- 正反面通用設定 --- */
+.flip-card-front, .flip-card-back {
+    position: absolute; 
+    width: 100%; 
+    height: 100%;
+    -webkit-backface-visibility: hidden; 
+    backface-visibility: hidden;
+    border-radius: 15px; 
+    overflow: hidden; /* 確保圖片不超出圓角 */
+}
+
+/* --- [正面] 滿版圖片樣式 --- */
+.flip-card-front {
+    background-color: #000;
+    border: 1px solid rgba(255, 255, 255, 0.8); 
+    padding: 0; /* 移除內距 */
+}
+
+/* 滿版圖片 */
+.channel-img-full { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; /* 填滿卡片 */
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+/* 圖片微放大特效 (Hover時) */
+.flip-card:hover .channel-img-full {
+    transform: scale(1.1); 
+}
+
+/* 標題與遮罩層 */
+.front-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 15px;
+    /* 黑色漸層遮罩：從底部黑色漸變到透明 */
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    z-index: 2;
+    text-align: center;
+}
+
+.front-overlay h3 {
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* 增加文字可讀性 */
+    letter-spacing: 1px;
+}
+
+/* --- [背面] 文字說明樣式 --- */
+.flip-card-back {
+    background-color: var(--primary-yellow);
+    color: #000;
+    transform: rotateY(180deg);
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.2); /* 發光感 */
+}
+
+.flip-card-back h3 { 
+    font-size: 1.4rem; 
+    margin-bottom: 15px; 
+    border-bottom: 2px solid #000; 
+    padding-bottom: 10px; 
+    font-weight: 800;
+}
+
+.flip-card-back p { 
+    font-size: 1.1rem; 
+    line-height: 1.6; 
+    font-weight: 500;
+}
+
+/* --- RWD --- */
+@media (max-width: 900px) {
+    .flip-card-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+    .flip-card-grid { grid-template-columns: 1fr; }
+    .flip-card { height: 280px; } /* 手機版稍微矮一點 */
+}
+
+/* 3. 轉型痛點 (2x2 橫式卡片) */
+
+/* 1. 寬版容器設定 (突破 1200px 限制) */
+.container-wide {
+    width: 95%;        /* 佔據螢幕寬度 95% */
+    max-width: 1600px; /* 最大寬度放到 1600px */
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 2. Grid 排版 (2x2) */
+.pain-grid-wide {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2欄 */
+    gap: 30px;
+    margin-top: 50px;
+}
+
+/* 3. 橫式卡片本體 */
+.pain-card-wide {
+    background: #FFFFFF;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;       /* 左圖右文 */
+    flex-direction: row;
+    align-items: stretch; /* 讓圖文高度一致 */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+/* Hover 效果 */
+.pain-card-wide:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(255, 215, 0, 0.15);
+    border-color: var(--primary-yellow);
+}
+
+/* 4. 左側圖片區 (佔 55%) */
+.pain-img-left {
+    width: 55%; 
+    position: relative;
+    overflow: hidden;
+    min-height: 280px; /* 確保圖片有基本高度 */
+}
+
+.pain-img-left img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 填滿不變形 */
+    transition: transform 0.5s ease;
+}
+
+.pain-card-wide:hover .pain-img-left img {
+    transform: scale(1.08);
+}
+
+/* 5. 右側內容區 (佔 45%) */
+.pain-content-right {
+    width: 45%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+/* 標題 */
+.pain-content-right h3 {
+    font-size: 1.5rem;
+    color: #121212;
+    font-weight: 900;
+    margin-bottom: 10px;
+    white-space: nowrap; /* 標題不換行 */
+}
+
+/* 副標題 */
+.pain-subtitle {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eee;
+    font-weight: 500;
+    white-space: nowrap; /* 副標題不換行 */
+}
+
+/* 列表 */
+.pain-content-right ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.pain-content-right ul li {
+    display: flex;
+    align-items: center; /* 垂直置中 */
+    margin-bottom: 8px;
+    color: #444;
+    font-size: 1rem; /* 字體稍微調大一點 */
+    line-height: 1.4;
+    font-weight: 500;
+    /* 盡量不換行，若太長自動省略 */
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+/* 黃色打勾 Icon */
+.pain-content-right ul li i {
+    color: var(--primary-yellow);
+    margin-right: 10px;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+/* --- RWD 響應式設定 --- */
+
+/* 1. 寬度 < 1400px (筆電) */
+@media (max-width: 1400px) {
+    /* 允許文字換行，避免被切掉 */
+    .pain-content-right ul li, 
+    .pain-subtitle, 
+    .pain-content-right h3 {
+        white-space: normal; 
+    }
+}
+
+/* 2. 寬度 < 1200px (平板/手機) */
+@media (max-width: 1200px) {
+    .pain-grid-wide {
+        grid-template-columns: 1fr; /* 改為單欄堆疊 (1x4) */
+        max-width: 700px; /* 限制單欄寬度，比較好看 */
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    /* 保持橫式排列 (圖左文右)，因為這在平板上閱讀很舒服 */
+    .pain-card-wide {
+        flex-direction: row; 
+    }
+}
+
+/* 3. 寬度 < 800px (小手機) */
+@media (max-width: 600px) {
+    /* 改為直式堆疊 (圖上文下) */
+    .pain-card-wide {
+        flex-direction: column;
+    }
+    
+    .pain-img-left, .pain-content-right {
+        width: 100%; /* 寬度全滿 */
+    }
+    
+    .pain-img-left {
+        height: 200px; /* 圖片高度縮減 */
+    }
+}
+
+/* 4. 加值服務 */
+.addon-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px;
+    max-width: 1000px; margin-left: auto; margin-right: auto;
+}
+.addon-card {
+     /* 1. 玻璃背景：低透明度的白色 */
+    background: rgba(255, 255, 255, 0.08);
+    
+    /* 2. 毛玻璃濾鏡 (關鍵效果) */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    
+    /* 3. 玻璃邊框：細緻的半透明白線 */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px; padding: 40px; text-align: center;
+    position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+}
+
+    /* Hover 互動效果 */
+    .addon-card:hover {
+    transform: translateY(-5px);
+    /* 移上去時，邊框變亮，背景稍微變白一點 */
+    border-color: rgba(255, 255, 255, 0.6); 
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+}
+
+
+
+.addon-card h3 { font-size: 1.8rem; font-weight: 900; color: #fff; margin-bottom: 15px; }
+.tags span { 
+    display: inline-block; background: #ffeeba; color: #856404; 
+    padding: 5px 12px; border-radius: 20px; font-size: 0.85rem; margin: 0 5px; font-weight: bold;
+}
+.addon-body {
+    display: flex; align-items: center; gap: 20px; margin-top: 30px; text-align: left;
+}
+.addon-body img { width: 120px; height: auto; border-radius: 8px; }
+.addon-body p { font-size: 1.1rem; line-height: 1.6; color: #DDDDDD; }
+
+.addon-link {
+    display: inline-block; margin-top: 20px; background: var(--primary-yellow); color: #000;
+    padding: 5px 20px; border-radius: 8px; text-decoration: none; font-weight: 700;
+    transition: 0.3s;
+}
+.addon-link:hover { background: #e6c200; }
+
+/* 5. CTA 區塊 */
+.join-cta-rest {
+    background-color: var(--primary-yellow); padding: 80px 20px; text-align: center;
+}
+.join-cta-rest h2 { font-size: 2.5rem; color: #000; font-weight: 900; margin-bottom: 15px; }
+.join-cta-rest p { font-size: 1.3rem; color: #333; margin-bottom: 40px; font-weight: 500; }
+.btn-black-cta {
+    background: #000; color: var(--primary-yellow); padding: 15px 50px; 
+    font-size: 1.2rem; font-weight: 700; border-radius: 5px; text-decoration: none;
+    transition: 0.3s; display: inline-block;
+}
+.btn-black-cta:hover { background: #333; color: #fff; transform: translateY(-3px); }
+
+/* --- RWD --- */
+@media (max-width: 900px) {
+    .flip-card-grid { grid-template-columns: repeat(2, 1fr); } /* 平板 2欄 */
+    .pain-point-grid { grid-template-columns: 1fr; } /* 手機單欄 */
+    .addon-grid { grid-template-columns: 1fr; }
+    
+    .pain-card-h { flex-direction: column; }
+    .pain-img-box { width: 100%; height: 200px; }
+    .pain-content { width: 100%; }
+    
+    .addon-body { flex-direction: column; text-align: center; }
+}
+
+@media (max-width: 600px) {
+    .flip-card-grid { grid-template-columns: 1fr; } /* 手機單欄 */
+}
+</style>
+</head>
+<body>
+  <!-- 導航欄 (Header) -->
+    <header>
+        <div class="container nav-wrapper">
+            <!-- Logo 區 -->
+            <a href="index.html" class="brand-logo">
+                <img src="logo.png" alt="EATING-OUT Logo">
+                <span class="brand-text">快帶科技有限公司</span>
+            </a>
+
+            <!-- 手機版漢堡按鈕 -->
+            <div class="mobile-toggle" id="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+
+            <!-- 選單連結 -->
+            <ul class="nav-menu" id="nav-menu">
+                
+                <!-- 1. 首頁 (含下拉) -->
+                <li class="dropdown">
+                    <a href="index.html" class="active">首頁 <i class="fas fa-chevron-down toggle-icon"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#about-section">關於我們</a></li>
+                        <li><a href="#timeline-section">品牌歷程</a></li>
+                    </ul>
+                </li>
+
+                <!-- 2. 產品服務 (多層下拉) -->
+                <li class="dropdown">
+                    <a href="#">產品服務 <i class="fas fa-chevron-down toggle-icon"></i></a>
+                    <ul class="dropdown-menu">
+                        <!-- 同等級項目 1 -->
+                        <li><a href="insights.html">Insights 洞察商家檔案數據</a></li>
+                        
+                        <!-- 同等級項目 2 (含子選單) -->
+                        <li class="dropdown-submenu">
+                            <a href="#" class="submenu-toggle">EATING-OUT 線上點餐 <i class="fas fa-chevron-right arrow-right"></i></a>
+                            <!-- 第三層選單 -->
+                            <ul class="dropdown-menu submenu">
+                                <li><a href="restaurant.html">餐廳端介紹</a></li>
+                                <li><a href="customer.html">顧客端介紹</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- 3. 投資人 -->
+                <li><a href="investor.html">投資人專區</a></li>
+
+                <!-- 4. 常見問題 -->
+                <li><a href="faq.html">常見問題</a></li>
+
+                <!-- 5. 聯絡我們 (按鈕) -->
+                <li><a href="contact.html" class="btn btn-primary nav-btn">聯絡我們</a></li>
+            </ul>
+        </div>
+    </header>
+
+<!-- 1. Hero 區塊  -->
+<section class="rest-hero-section">
+    <div class="container hero-content">
+      
+        <div class="hero-top-deco">
+            <span class="deco-line"></span>
+            <h4>小店面數位轉型的最佳首選</h4>
+            <span class="deco-line"></span>
+        </div>
+    
+        <h1>EATING-OUT 線上點餐</h1>
+        <p class="hero-sub">連接商家與消費者的智慧橋樑，幫您<span class="highlight">輕鬆接單，掌握商機</span></p>
+        </div>
+
+</section>
+<!-- 2. 全通路客源引流  -->
+<section class="section-padding" style="background-color: #121212;">
+    <div class="container">
+        <div class="section-header">
+            <h2>全通路客源引流</h2>
+            <p>支援顧客多元管道快速點餐，網羅線上線下，訂單 24hr 不間斷</p>
+        </div>
+
+        <div class="flip-card-grid">
+            
+            <!-- 卡片 1 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <!-- 正面：滿版圖 + 壓字 -->
+                    <div class="flip-card-front">
+                        <img src="channel1.png" alt="線上點餐APP" class="channel-img-full">
+                        <div class="front-overlay">
+                            <h3>線上點餐 APP</h3>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>線上點餐 APP</h3>
+                        <p>專屬品牌 App 介面，支援預約訂單與取餐，讓熟客隨時隨地輕鬆下單。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卡片 2 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="channel2.png" alt="內用桌自助掃碼" class="channel-img-full">
+                        <div class="front-overlay">
+                            <h3>內用桌自助掃碼</h3>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>內用桌自助掃碼</h3>
+                        <p>每桌專屬 QR Code，顧客入座即掃即點，直連廚房出單，節省外場人力。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卡片 3 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="channel3.png" alt="LINE OA 官方帳號" class="channel-img-full">
+                        <div class="front-overlay">
+                            <h3>LINE OA 官方帳號</h3>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>LINE OA 官方帳號</h3>
+                        <p>整合 LINE 圖文選單，無需跳出即可完成點餐，有效經營舊客流量。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卡片 4 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="channel4.png" alt="Google 商家外帶連結" class="channel-img-full">
+                        <div class="front-overlay">
+                            <h3>Google商家點餐外帶</h3>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Google 點餐外帶</h3>
+                        <p>在 Google 地圖上「點餐」按鈕直接載入點餐頁，攔截搜尋流量，轉化為實際訂單。</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- 3. 轉型痛點 (寬版 2x2 橫式卡片) -->
+<section class="section-padding" style="background-color: #1a1a1a;">
+    <!-- 改用 container-wide 讓寬度更寬 -->
+    <div class="container-wide">
+        
+        <div class="section-header">
+            <h2>轉型痛點一次搞定</h2>
+            <div class="title-underline"></div>
+        </div>
+
+        <div class="pain-grid-wide">
+            
+            <!-- 卡片 1: 智慧接單 -->
+            <div class="pain-card-wide">
+                <div class="pain-img-left">
+                    <img src="adv1.jpg" alt="智慧接單" onerror="this.src='https://via.placeholder.com/600x400/121212/FFD700?text=Smart+Order'">
+                </div>
+                <div class="pain-content-right">
+                    <h3>智慧接單與菜單管理</h3>
+                    <p class="pain-subtitle">告別接單混亂，備餐更從容</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> 菜單一鍵即時更新，無需重印</li>
+                        <li><i class="fas fa-check-circle"></i> 自動接單減少電話干擾</li>
+                        <li><i class="fas fa-check-circle"></i> 庫存即時控管，防止超賣</li>
+                        <li><i class="fas fa-check-circle"></i> 備貨量精準預估，降低耗損</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 卡片 2: 顧客維護 -->
+            <div class="pain-card-wide">
+                <div class="pain-img-left">
+                    <img src="adv2.jpg" alt="顧客維護" onerror="this.src='https://via.placeholder.com/600x400/121212/FFD700?text=Customer+Care'">
+                </div>
+                <div class="pain-content-right">
+                    <h3>顧客關係與行銷推廣</h3>
+                    <p class="pain-subtitle">精準經營熟客，提升回購率</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> 註記惡意棄單，共享資訊防護</li>
+                        <li><i class="fas fa-check-circle"></i> 可透過訂單直接聯繫客戶</li>
+                        <li><i class="fas fa-check-circle"></i> 獨家餐點離峰優惠設定</li>
+                        <li><i class="fas fa-check-circle"></i> 平台新戶$100美食金，協助推廣</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 卡片 3: 多元支付 -->
+            <div class="pain-card-wide">
+                <div class="pain-img-left">
+                    <img src="adv3.jpg" alt="多元支付" onerror="this.src='https://via.placeholder.com/600x400/121212/FFD700?text=Payment'">
+                </div>
+                <div class="pain-content-right">
+                    <h3>多元支付整合方案</h3>
+                    <p class="pain-subtitle">結帳零接觸，金流透明且安全</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> 支援現金、信用卡、多元線上支付</li>
+                        <li><i class="fas fa-check-circle"></i> 整合 LINE Pay 付款快速結帳</li>
+                        <li><i class="fas fa-check-circle"></i> 金流直達店家帳戶，不經手平台</li>
+                        <li><i class="fas fa-check-circle"></i> 免平台抽成，利潤最大化</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 卡片 4: 數據分析 -->
+            <div class="pain-card-wide">
+                <div class="pain-img-left">
+                    <img src="adv4.jpg" alt="數據分析" onerror="this.src='https://via.placeholder.com/600x400/121212/FFD700?text=Data+Analysis'">
+                </div>
+                <div class="pain-content-right">
+                    <h3>精準營運數據分析</h3>
+                    <p class="pain-subtitle">數據驅動決策，掌握熱銷密碼</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> 即時追蹤熱門餐點排行</li>
+                        <li><i class="fas fa-check-circle"></i> 視覺化營收報表，一目了然</li>
+                        <li><i class="fas fa-check-circle"></i> 會員消費喜好分析</li>
+                        <li><i class="fas fa-check-circle"></i> 協助制定精準行銷與備貨策略</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- 4. 其他服務 -->
+<section class="section-padding" style="background-color: #121212;">
+    <div class="container">
+        <div class="section-header">
+            <h2>其他加值服務</h2>
+            <div class="title-underline"></div>
+        </div>
+
+        <div class="addon-grid">
+            <!-- 服務 1: 藍芽出單機 -->
+            <div class="addon-card">
+                <h3>藍芽出單機</h3>
+                <div class="tags">
+                    <span>#熱感應紙</span>
+                    <span>#自動出單</span>
+                </div>
+                <div class="addon-body">
+                    <img src="printer.png" alt="藍芽出單機">
+                    <p>訂單自動出單，提供內、外場訂單明細核對，優化出餐流程，減少錯誤方便備餐。</p>
+                </div>
+            </div>
+
+            <!-- 服務 2: EO Insights -->
+            <div class="addon-card">
+                <h3>EO Insights</h3>
+                <div class="tags">
+                    <span>#商家檔案</span>
+                    <span>#數據監控</span>
+                </div>
+                <div class="addon-body">
+                    <img src="dashboard.png" alt="EO Insights">
+                    <p>建立您的數位形象，精準掌控商家檔案，守護品牌的數位門面。
+                    <br>
+                    <a href="insights.html" class="addon-link">瞭解更多 &rarr;</a></p>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 5. 聯絡我們 CTA -->
+<section class="join-cta-rest">
+    <div class="container">
+        <h2>您的餐廳數位服務，從 EATING-OUT 開始</h2>
+        <p>立即申請，專人導入服務，訂單商機一手掌握</p>
+        <a href="contact.html" class="btn btn-black-cta">聯絡我們免費諮詢</a>
+    </div>
+</section>
+
+
+ <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-layout">
+            
+            <!-- 1. 公司資訊 -->
+ <div class="footer-info">
+                <div class="footer-logo">
+                    <img src="logo.png" alt="EATING-OUT">
+                    <span>快帶科技</span>
+                </div>
+                <h4 class="company-name">快帶科技有限公司</h4>
+                <ul class="info-list">
+                    <li><i class="fas fa-id-card"></i> 統編：90249191</li>
+                    <li><i class="fas fa-map-marker-alt"></i> 地址：台南市中西區民生路二段76號4樓A11</li>
+                    <li><i class="fas fa-phone-alt"></i> 電話：06-7030731</li>
+                    <li><i class="fas fa-envelope"></i> 信箱：support@eating-out.co</li>
+                </ul>
+            </div>
+
+            <!-- 2. 網站地圖  -->
+            <div class="footer-sitemap">
+                <h3>網站地圖</h3>
+                <div class="sitemap-grid">
+                    <!-- 左欄 -->
+                    <ul class="col-left">
+                        <li><a href="index.html">品牌首頁</a></li>
+                        <li><a href="index.html#about-section">關於我們</a></li>
+                        <li><a href="insights.html">EO Insight</a></li>
+                        <li><a href="restaurant.html">餐廳端服務</a></li>
+                    </ul>
+                    <!-- 右欄 -->
+                    <ul class="col-right">
+                        <li><a href="customer.html">顧客端服務</a></li>
+                        <li><a href="investor.html">投資人專區</a></li>
+                        <li><a href="faq.html">常見問題</a></li>
+                        <li><a href="contact.html">聯絡我們</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 3. 條款與社群 -->
+           <div class="footer-social">
+                <h3>條款與社群</h3>
+                <ul>
+                    <li><a href="https://www.privacypolicies.com/live/3c39b265-99a9-4bb6-9d44-1a0d38e95668" target="_blank">服務條款</a></li>
+                    <li><a href="https://www.privacypolicies.com/live/0a9ea377-a2b5-4dcc-b830-562689baf47e" target="_blank">隱私權政策</a></li>
+                </ul>
+                <div class="social-icons-group">
+                    <a href="https://www.facebook.com/eatingoutTW" target="_blank" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/eatingouttw/" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
+                    <a href="https://line.me/R/ti/p/@518vmbpw?oat_content=url" target="_blank" class="social-btn"><i class="fab fa-line"></i></a>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="copyright">
+            &copy; 2026 EATING-OUT Technology Co., Ltd. All Rights Reserved.
+        </div>
+    </div>
+</footer>
+
+
+<script src="script.js">
+
+    </script>
+
+</body>
+</html>

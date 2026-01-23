@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快帶科技有限公司 | EATING-OUT</title>
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.jpg" type="image/jpeg">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome (圖示) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<style>
+
+
+/* --- 1. Hero 區塊 --- */
+.insights-hero {
+    position: relative;
+    background-image: url('insights_hero_bg.png'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 650px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+}
+
+.insights-hero h1 {
+    font-size: 3.5rem;
+    color: var(--text-white);
+    margin-bottom: 20px;
+    font-weight: 900;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.insights-hero p {
+    color: #eee;
+    font-size: 1.8rem;
+    font-weight: 300;
+    max-width: 900px;
+    margin: 0 auto;
+    Letter-spacing:3px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+/* --- RWD 手機版微調 --- */
+@media (max-width: 768px) {
+    .insights-hero { min-height: 500px; }
+    .hero-top-deco h4 { font-size: 1rem; }
+    .insights-hero h1{ font-size: 2.3rem; }
+    .insights-hero p{ font-size: 1.2rem; letter-spacing: 1px; line-height: 1.6; padding: 0 10px;}
+
+}
+
+
+/* --- 2. 專家引述 --- */
+.quote-section {
+    background-color: var(--bg-card);
+    padding: 80px 20px;
+}
+
+.quote-box {
+    max-width: 900px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 5px solid var(--primary-yellow);
+    padding: 40px;
+    border-radius: 0 8px 8px 0;
+    text-align: left;
+}
+
+.quote-text {
+    color: #ddd;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.quote-highlight {color: var(--primary-yellow); font-weight: 900; font-size: 1.4rem; margin: 0 5px;}
+.quote-underline { border-bottom: 2px solid var(--primary-yellow); color: #fff;}
+.read-more-link { font-size: 0.9rem; color: #888; margin-left: 10px; text-decoration: none; border-bottom: 1px dashed #666; font-style: normal;}
+.read-more-link:hover { color: var(--primary-yellow); border-color: var(--primary-yellow); }
+.quote-author { text-align: right; color: #888; font-size: 0.95rem;}
+
+
+
+/* --- RWD 手機版微調 --- */
+@media (max-width: 768px) {
+    /* 專家引述文字縮小 */
+    .quote-text {
+        font-size: 0.9rem; /* 原本是 1.15rem */
+        line-height: 1.8;}
+    .quote-highlight {
+        font-size: 1rem; /* 強調文字也稍微縮小 */}
+}
+
+
+
+/* --- 3. 三大提問  --- */
+.pain-points-section {
+    padding: 100px 20px;
+    background-color: var(--bg-dark);
+    text-align: center;
+}
+
+.pain-header h2 {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 60px;
+}
+
+.pain-circle-grid {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+}
+
+.pain-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 250px;
+}
+
+.pain-circle {
+    width: 180px;
+    height: 180px;
+    background-color: var(--primary-yellow);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+    transition: transform 0.3s;
+}
+
+.pain-circle:hover {
+    transform: scale(1.05);
+}
+
+.pain-circle i {
+    font-size: 5rem;
+    color: #000;
+}
+
+.pain-item h3 {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--primary-yellow);
+    margin-bottom: 15px;
+}
+
+.pain-item p {
+    font-size: 1.1rem;
+    color: #ccc;
+    line-height: 1.6;
+}
+
+.pain-solution {
+    margin-top: 50px;
+}
+
+.pain-solution p {
+    font-size: 2.2rem;
+    color: var(--primary-yellow);
+    font-weight: 700;
+}
+
+/* --- RWD 手機版微調 --- */
+@media (max-width: 768px) {
+    .pain-header h2 {font-size: 2rem;}
+    .pain-circle { width: 140px; height: 140px;}
+    .pain-circle i { font-size: 3rem !important; }
+    .pain-item h3 { font-size: 1.5rem;}
+    .pain-item p { font-size: 1rem padding: 0 10px;}
+    .pain-circle-grid { gap: 40px; }
+    .pain-solution p { font-size: 1.8rem; }
+
+}
+
+
+
+/* =========================================
+   4. 產品特色 (Z字排版 - 白底黑字)
+   ========================================= */
+
+.features-section {
+    padding: 0;
+    background-color: #FFFFFF;
+    color: #121212;
+    position: relative;
+    z-index: 10;
+}
+
+.feature-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 20px;
+    gap: 60px;
+    margin: 0 auto;
+    opacity: 1 !important; transform: none !important; /* 確保顯示 */
+}
+
+.feature-row.reverse {
+    flex-direction: row-reverse;
+    background-color: #F9F9F9;
+}
+
+.feature-image {
+    flex: 1;
+    max-width: 600px;
+}
+
+.feature-image img {
+    width: 100%;
+    height: auto;
+    background: transparent;
+}
+
+/* --- 文字內容區塊 --- */
+.feature-content {
+    flex: 1;
+    max-width: 450px;
+    text-align: center;
+}
+
+.feature-content h2 {
+    font-size: 2.5rem;
+    color: #000;
+    margin-bottom: 15px;
+    font-weight: 900;
+}
+
+/* 黃色底線 (置中) */
+.feature-line {
+    width: 320px;
+    height: 6px;
+    background-color: var(--primary-yellow);
+    margin: 0 auto 15px auto; /* auto 讓它水平置中 */
+}
+
+/* 副標題 (置中) */
+.feature-content > p {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    font-weight: 700; /* 加粗一點當作引言 */
+}
+
+/* --- 列表樣式：標題與內文換行 --- */
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left; /* ★ 列表內容回歸靠左對齊 ★ */
+}
+
+.feature-list li {
+    display: flex;
+    flex-direction: column; /* 垂直排列 */
+    margin-bottom: 20px; /* 每個項目的間距加大 */
+}
+
+/* 第一行：Icon + 標題 */
+.list-head {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.list-head i {
+    color: var(--primary-yellow);
+    font-size: 1.2rem;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.list-head strong {
+    font-size: 1.2rem;
+    color: #000;
+    font-weight: 900;
+}
+
+/* 第二行：內文說明 */
+.list-body {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+    padding-left: 30px; /* 縮排，對齊標題文字 */
+}
+
+/* --- RWD 手機版適配 --- */
+@media (max-width: 900px) {
+    .feature-row, .feature-row.reverse {flex-direction: column; text-align: center; gap: 40px; padding: 60px 20px;}
+    .feature-content h2 { font-size: 2rem; text-align: center; }
+    .feature-list li { justify-content: center; text-align: left; }
+    .feature-line { margin: 0 auto 30px; }
+    .list-body { padding-left: 0; margin-top: 5px; }
+
+}
+
+/* --- 5. 合作夥伴 (5x2 Grid) --- */
+.partners-section {
+    padding: 100px 20px;
+    background-color: #fff; /* 白底 */
+    text-align: center;
+}
+
+.partners-section h2 { font-size: 2.5rem; color: #000; margin-bottom: 20px; font-weight: 900;}
+.partners-section p { color: #666; margin-bottom: 50px; font-size: 1.2rem;}
+
+.partners-grid-5x2 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5欄 */
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.partner-logo-box { display: flex; justify-content: center; align-items: center; padding: 10px;}
+.partner-logo-box img { max-width: 100%; height: auto; max-height: 80px; transition: 0.3s; opacity: 1;}
+.partner-logo-box:hover img { opacity: 1; transform: scale(1.1);}
+
+
+ /* 6. 年度投資方案 */
+        .pricing-section {
+            background-color: #000000; padding: 100px 0;
+        }
+        .pricing-table-wrapper {
+            overflow-x: auto; margin-top: 40px;
+            background: #fff; border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(255, 255, 255, 0.1); 
+            padding: 20px;
+        }
+        .pricing-table { width: 100%; border-collapse: collapse; min-width: 600px; }
+        .pricing-table th, .pricing-table td { padding: 20px; text-align: center; border-bottom: 1px solid #eee; color: #333; font-size: 1rem; }
+        .pricing-table th { background-color: #333; color: #fff; font-size: 1.2rem; }
+        .pricing-table th.highlight { background-color: var(--primary-yellow); color: #000; position: relative; }
+        .pricing-table th.highlight::after {
+            content: '推薦方案'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+            background: #d00; color: #fff; padding: 4px 12px; font-size: 0.8rem; border-radius: 20px; font-weight: bold;
+        }
+        .price-tag { font-size: 1.6rem; font-weight: 900; color: #d00; }
+        .price-note { font-size: 0.9rem; color: #666; display: block; margin-top: 5px; }
+
+
+
+/* --- 7. CTA 區塊 (全黃色) --- */
+.cta-full-yellow {
+    background-color: var(--primary-yellow);
+    padding: 100px 20px;
+    text-align: center;
+    color: #000;
+}
+
+.cta-full-yellow h2 {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+.cta-full-yellow p {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.btn-black-cta {
+    background-color: #000;
+    color: #fff;
+    padding: 18px 60px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    border-radius: 50px; /* 圓角大一點 */
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.btn-black-cta:hover {
+    background-color: #333;
+    transform: translateY(-5px) scale(1.05); /* 浮動 + 放大 */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+/* --- RWD 手機版適配 --- */
+@media (max-width: 900px) {
+
+    
+    .partners-grid-5x2 {
+        grid-template-columns: repeat(2, 1fr); /* 手機版改 2欄 */
+        gap: 30px;
+    }
+
+}
+
+}
+</style>
+</head>
+<body>
+  <!-- 導航欄 (Header) -->
+    <header>
+        <div class="container nav-wrapper">
+            <!-- Logo 區 -->
+            <a href="index.html" class="brand-logo">
+                <img src="logo.png" alt="EATING-OUT Logo">
+                <span class="brand-text">快帶科技有限公司</span>
+            </a>
+
+            <!-- 手機版漢堡按鈕 -->
+            <div class="mobile-toggle" id="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+
+            <!-- 選單連結 -->
+            <ul class="nav-menu" id="nav-menu">
+                
+                <!-- 1. 首頁 (含下拉) -->
+                <li class="dropdown">
+                    <a href="index.html" class="active">首頁 <i class="fas fa-chevron-down toggle-icon"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#about-section">關於我們</a></li>
+                        <li><a href="#timeline-section">品牌歷程</a></li>
+                    </ul>
+                </li>
+
+                <!-- 2. 產品服務 (多層下拉) -->
+                <li class="dropdown">
+                    <a href="#">產品服務 <i class="fas fa-chevron-down toggle-icon"></i></a>
+                    <ul class="dropdown-menu">
+                        <!-- 同等級項目 1 -->
+                        <li><a href="insights.html">Insights 洞察商家檔案數據</a></li>
+                        
+                        <!-- 同等級項目 2 (含子選單) -->
+                        <li class="dropdown-submenu">
+                            <a href="#" class="submenu-toggle">EATING-OUT 線上點餐 <i class="fas fa-chevron-right arrow-right"></i></a>
+                            <!-- 第三層選單 -->
+                            <ul class="dropdown-menu submenu">
+                                <li><a href="restaurant.html">餐廳端介紹</a></li>
+                                <li><a href="customer.html">顧客端介紹</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- 3. 投資人 -->
+                <li><a href="investor.html">投資人專區</a></li>
+
+                <!-- 4. 常見問題 -->
+                <li><a href="faq.html">常見問題</a></li>
+
+                <!-- 5. 聯絡我們 (按鈕) -->
+                <li><a href="contact.html" class="btn btn-primary nav-btn">聯絡我們</a></li>
+            </ul>
+        </div>
+    </header>
+
+<!-- 1. Hero 區塊 -->
+<section class="insights-hero">
+    <div class="container">
+        <h1>EO INSIGHTS 洞察商家檔案數據</h1>
+        <p>建立您的數位形象，精準掌控商家檔案，守護品牌的數位門面。</p>
+    </div>
+</section>
+
+<!-- 2. 引用專家論述 -->
+<section class="quote-section">
+    <div class="container">
+        <div class="quote-box">
+            <div class="quote-text">
+                <i class="fas fa-quote-left" style="color: var(--primary-yellow); font-size: 1.5rem; margin-right: 10px;"></i>
+                數據顯示，<span class="quote-highlight">75%</span> 的 Google 在地搜尋會轉化為潛在客戶，凸顯了在地搜尋意圖對餐廳的重要性。這意味著，<span class="quote-underline">優化 Google 商家資訊和在地 SEO 的餐廳能夠吸引這些隨時準備購買的潛在客戶，從而獲得顯著收益。</span>
+                <a href="https://www.restroworks.com/blog/google-restaurant-search-statistics/" target="_blank" class="read-more-link">
+                    <i class="fas fa-external-link-alt"></i> 延伸閱讀
+                </a>
+            </div>
+            <div class="quote-author">
+                — Nikunj Kewalramani &lt;Restrowork 傳播主管&gt;
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3. 三大提問 (痛點) -->
+<section class="pain-points-section">
+    <div class="container">
+        <div class="pain-header">
+            <h2>你有經營 Google 商家檔案嗎？</h2>
+        </div>
+        
+        <div class="pain-circle-grid">
+            <div class="pain-item">
+                <div class="pain-circle"><i class="fas fa-comment-slash"></i></div>
+                <h3>輿情難掌握</h3>
+                <p>負評長期無人回應，缺乏即時通報機制，甚至引發公關危機。</p>
+            </div>
+            <div class="pain-item">
+                <div class="pain-circle"><i class="fas fa-chart-line"></i></div>
+                <h3>數據難洞察</h3>
+                <p>數據分散，缺乏整合性報表，難以洞察問題，制定精準營運策略。</p>
+            </div>
+            <div class="pain-item">
+                <div class="pain-circle"><i class="fas fa-store-slash"></i></div>
+                <h3>分店難管理</h3>
+                <p>據點數十間，資訊不一、照片老舊，總部難以統一控管品牌形象。</p>
+            </div>
+        </div>
+
+        <div class="pain-solution">
+            <p>EO INSIGHTS 讓商家檔案管理更便利、更精準！</p>
+        </div>
+    </div>
+</section>
+
+<!-- 4. 產品服務及特色 (Z字排版 - 標題置中 + 列表優化版) -->
+<section class="features-section">
+    
+    <!-- 特色 1: 搜尋流量轉訂單 -->
+    <div class="feature-row">
+        <div class="feature-image">
+            <img src="insight_feature1.png" alt="搜尋流量轉訂單">
+        </div>
+        <div class="feature-content">
+            <h2>搜尋流量轉訂單</h2>
+            <div class="feature-line"></div>
+            <p>載入 Google 官方點餐按鈕，讓搜尋流量變現</p>
+            
+            <ul class="feature-list">
+                <li>
+                    <div class="list-head">
+                        <i class="fas fa-check-circle"></i>
+                        <strong>菜單一鍵直購</strong>
+                    </div>
+                    <div class="list-body">
+                        「線上點餐」服務直接整合到商家檔案，將成千上萬曝光轉訂單！
+                    </div>
+                </li>
+                <li>
+                    <div class="list-head">
+                        <i class="fas fa-check-circle"></i>
+                        <strong>統一控管菜單</strong>
+                    </div>
+                    <div class="list-body">
+                        與 Google 商家資訊連動，總部後台一鍵更新全台菜單與活動資訊。
+                    </div>
+                </li>
+                <li>
+                    <div class="list-head">
+                        <i class="fas fa-check-circle"></i>
+                        <strong>AI 洞察關鍵營運數據</strong>
+                    </div>
+                    <div class="list-body">
+                        不只知道誰「點了餐」，還能結合 Insights 知道誰「留了言」，幫您分析並產生洞察報告。
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 特色 2: 商家評論智慧管理 -->
+    <div class="feature-row reverse">
+        <div class="feature-image">
+            <img src="insight_feature2.png" alt="商家評論智慧管理">
+        </div>
+        <div class="feature-content">
+            <h2>商家評論智慧管理</h2>
+            <div class="feature-line"></div>
+            <p>不僅是看評論，更是將顧客聲音轉化為行動</p>
+            
+            <ul class="feature-list">
+                <li>
+                    <div class="list-head">
+                        <i class="fas fa-check-circle"></i>
+                        <strong>評論彙整與情緒分析</strong>
+                    </div>
+                    <div class="list-body">
+                        自動分析評論關鍵字與情緒正負向，將海量評論轉化為具決策價值的市場資訊。
+                    </div>
+                </li>
+                <li>
+                    <div class="list-head">
+                        <i class="fas fa-check-circle"></i>
+                        <strong>AI 智能回覆幫手</strong>
+                    </div>
+                    <div class="list-body">
+                        由 AI 學習品牌回覆語氣，針對不同評論自動生成得體的回應，大幅節省人力成本。
+                    </div>
+                </li>
+                <li>
+                    <div class="list-head">
+                        <i class="fas fa-check-circle"></i>
+                        <strong>一星評論示警系統</strong>
+                    </div>
+                    <div class="list-body">
+                        當出現「食安關鍵字」或「一星負評」時，系統會立即以 Email 主動通知區域督導，第一時間介入滅火。
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 特色 3: 數位門面集中化管理 -->
+    <div class="feature-row">
+        <div class="feature-image">
+            <img src="insight_feature3.png" alt="數位門面集中化管理">
+        </div>
+        <div class="feature-content">
+            <h2>數位門面集中化管理</h2>
+            <div class="feature-line"></div>
+            <p>透過 OAuth 技術，總部即可取得最高權限，確保品牌形象統一</p>
+            
+            <ul class="feature-list">
+                <li>
+                    <div class="list-head">
+                        <i class="fas fa-check-circle"></i>
+                        <strong>數位戰情看板</strong>
+                    </div>
+                    <div class="list-body">
+                        整合全台門市數據，即時監控品牌聲量趨勢與健康度。
+                    </div>
+                </li>
+                <li>
+                    <div class="list-head">
+                        <i class="fas fa-check-circle"></i>
+                        <strong>分店排行績效評比</strong>
+                    </div>
+                    <div class="list-body">
+                        透過數據儀表板，列出各分店評分與評論數排行，協助督導鎖定需重點關懷的門市。
+                    </div>
+                </li>
+                <li>
+                    <div class="list-head">
+                        <i class="fas fa-check-circle"></i>
+                        <strong>資訊同步更新</strong>
+                    </div>
+                    <div class="list-body">
+                        總部可統一更換行銷活動封面、菜單連結，確保品牌形象一致。
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</section>
+
+<!-- 5. 官方認證合作夥伴 -->
+<section class="partners-section">
+    <div class="container">
+        <h2>官方認證合作夥伴</h2>
+        <p>EATING-OUT 獲得多項權威機構認證與支持，是您值得信賴的選擇</p>
+        
+        <div class="partners-grid-5x2">
+            <!-- 第一排 -->
+            <div class="partner-logo-box"><img src="google partners.png" alt="Google"></div>
+            <div class="partner-logo-box"><img src="google for startups.png" alt="Google for Startups"></div>
+            <div class="partner-logo-box"><img src="microsoft.png" alt="Microsoft"></div>
+            <div class="partner-logo-box"><img src="ncku.png" alt="成大"></div>
+            <div class="partner-logo-box"><img src="moea.png" alt="經濟部"></div>
+            <!-- 第二排 -->
+            <div class="partner-logo-box"><img src="haoshi.png" alt="好食好事"></div>
+            <div class="partner-logo-box"><img src="moda.png" alt="數位發展部"></div>
+            <div class="partner-logo-box"><img src="teamwork.png" alt="天惟"></div>
+            <div class="partner-logo-box"><img src="sbir.png" alt="SBIR"></div>
+            <div class="partner-logo-box"><img src="sinopac.png" alt="永豐銀行"></div>
+        </div>
+    </div>
+</section>
+
+<!-- 6. 年度投資方案 (沿用舊代碼) -->
+ <!-- 4. 年度投資方案 (黑底背景 + 白卡片) -->
+    <section class="section-padding pricing-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 style="color: #fff;">年度投資方案</h2>
+                <p style="color: #aaa;">專為連鎖品牌設計的彈性導入計畫</p>
+            </div>
+            
+            <div class="pricing-table-wrapper">
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th style="background: #333; color: #fff;">項目</th>
+                            <th style="background: #333; color: #fff; width: 35%;">方案 A：彈性導入 (半年)</th>
+                            <th class="highlight" style="width: 35%;">方案 B：年度戰略合約 (一年)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>適用場景</strong></td>
+                            <td>短期測試、試行導入</td>
+                            <td>長期佈局、完整季節性數據追蹤</td>
+                        </tr>
+                        <tr>
+                            <td><strong>包含服務</strong></td>
+                            <td>基礎建置、教育訓練<br>保留半年數據</td>
+                            <td>基礎建置、教育訓練<br><strong>完整保留一年以上數據</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>單店月費</strong></td>
+                            <td>NT$ 2,500 / 月</td>
+                            <td><span class="price-tag">NT$ 2,300</span> / 月<br><span class="price-note">(節省 8% 費用)</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>平均日成本</strong></td>
+                            <td>約 $83 / 天</td>
+                            <td><strong>約 $76 / 天</strong><br><span style="font-size: 0.9rem; color: #d00; display: block; margin-top:5px; font-weight: bold;">比一個便當還便宜！</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="text-align: center; margin-top: 20px; color: #888; font-size: 0.9rem;">* 實際報價依門市數量與需求模組調整，歡迎聯繫業務索取詳細報價單。</p>
+        </div>
+    </section>
+
+<!-- 7. CTA 按鈕 -->
+<section class="cta-full-yellow">
+    <div class="container">
+        <h2>啟動您的數位品牌護城河</h2>
+        <p>別讓負評與混亂資訊悄悄偷走您的顧客，現在預約，享專人免費健檢商家檔案！</p>
+        <a href="contact.html" class="btn-black-cta">立即預約諮詢</a>
+    </div>
+</section>
+
+
+
+ <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-layout">
+            
+            <!-- 1. 公司資訊 -->
+ <div class="footer-info">
+                <div class="footer-logo">
+                    <img src="logo.png" alt="EATING-OUT">
+                    <span>快帶科技</span>
+                </div>
+                <h4 class="company-name">快帶科技有限公司</h4>
+                <ul class="info-list">
+                    <li><i class="fas fa-id-card"></i> 統編：90249191</li>
+                    <li><i class="fas fa-map-marker-alt"></i> 地址：台南市中西區民生路二段76號4樓A11</li>
+                    <li><i class="fas fa-phone-alt"></i> 電話：06-7030731</li>
+                    <li><i class="fas fa-envelope"></i> 信箱：support@eating-out.co</li>
+                </ul>
+            </div>
+
+            <!-- 2. 網站地圖  -->
+            <div class="footer-sitemap">
+                <h3>網站地圖</h3>
+                <div class="sitemap-grid">
+                    <!-- 左欄 -->
+                    <ul class="col-left">
+                        <li><a href="index.html">品牌首頁</a></li>
+                        <li><a href="index.html#about-section">關於我們</a></li>
+                        <li><a href="insights.html">EO Insight</a></li>
+                        <li><a href="restaurant.html">餐廳端服務</a></li>
+                    </ul>
+                    <!-- 右欄 -->
+                    <ul class="col-right">
+                        <li><a href="customer.html">顧客端服務</a></li>
+                        <li><a href="investor.html">投資人專區</a></li>
+                        <li><a href="faq.html">常見問題</a></li>
+                        <li><a href="contact.html">聯絡我們</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 3. 條款與社群 -->
+           <div class="footer-social">
+                <h3>條款與社群</h3>
+                <ul>
+                    <li><a href="https://www.privacypolicies.com/live/3c39b265-99a9-4bb6-9d44-1a0d38e95668" target="_blank">服務條款</a></li>
+                    <li><a href="https://www.privacypolicies.com/live/0a9ea377-a2b5-4dcc-b830-562689baf47e" target="_blank">隱私權政策</a></li>
+                </ul>
+                <div class="social-icons-group">
+                    <a href="https://www.facebook.com/eatingoutTW" target="_blank" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/eatingouttw/" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
+                    <a href="https://line.me/R/ti/p/@518vmbpw?oat_content=url" target="_blank" class="social-btn"><i class="fab fa-line"></i></a>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="copyright">
+            &copy; 2026 EATING-OUT Technology Co., Ltd. All Rights Reserved.
+        </div>
+    </div>
+</footer>
+
+
+<script src="script.js">
+// --- 捲動特效 (Scroll Reveal) ---
+document.addEventListener("DOMContentLoaded", function() {
+    const observerOptions = {
+        threshold: 0.15 // 露出 15% 時觸發
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible'); // 配合 CSS 動畫
+            }
+        });
+    }, observerOptions);
+
+    // 針對特色區塊的圖片與文字加入觀察
+    const features = document.querySelectorAll('.feature-image, .feature-content');
+    features.forEach(el => {
+        el.style.opacity = '100';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'all 0.6s ease-out';
+        observer.observe(el);
+    });
+});
+
+// 在 CSS 中加入 visible 類別的樣式
+// .visible { opacity: 1 !important; transform: translateY(0) !important; }
+    </script>
+
+</body>
+</html>

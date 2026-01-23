@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快帶科技有限公司 | EATING-OUT</title>
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.jpg" type="image/jpeg">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome (圖示) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<style>
+ 
+    /* --- 標題 --- */
+    .faq-header {
+        margin-bottom: 40px;
+        text-align: center;
+    }
+    
+    .faq-header h1 {
+        font-size: 2.5rem;
+        margin: 0 0 10px 0;
+        color: var(--primary-yellow);
+    }
+    
+    .faq-header p { color: var(--text-gray); margin: 0; }
+
+    /* --- 搜尋列 --- */
+    .search-container {
+        max-width: 600px;
+        margin: 0 auto 50px auto;
+        position: relative;
+    }
+    
+    .search-box {
+        width: 100%;
+        padding: 15px 20px 15px 50px;
+        border-radius: 50px;
+        border: 2px solid var(--border-color);
+        background-color: #121212;
+        color: #fff;
+        font-size: 1.1rem;
+        outline: none;
+        transition: 0.3s;
+    }
+    
+    .search-box:focus {
+        border-color: var(--primary-yellow);
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+    }
+    
+    .search-icon {
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #888;
+        font-size: 1.2rem;
+        transition: 0.3s;
+    }
+    
+    .search-box:focus + .search-icon { color: var(--primary-yellow); }
+
+    /* --- 版面佈局 (Grid) --- */
+    .faq-layout {
+        display: grid;
+        grid-template-columns: 250px 1fr; /* 左選單 250px，右內容自適應 */
+        gap: 40px;
+        align-items: start;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* --- 左側分類選單 (Tabs) --- */
+    .faq-sidebar {
+        background-color: var(--bg-card);
+        border-radius: 12px;
+        overflow: hidden;
+        position: sticky;
+        top: 20px;
+        border: 1px solid var(--border-color);
+    }
+
+    .tab-btn {
+        width: 100%;
+        padding: 18px 25px;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid var(--border-color);
+        color: #aaa;
+        text-align: left;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: 0.3s;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .tab-btn:hover { background-color: #333; color: #fff; }
+    
+    .tab-btn.active {
+        background-color: var(--primary-yellow);
+        color: #000;
+        font-weight: 700;
+    }
+    
+    .tab-btn:last-child { border-bottom: none; }
+
+    /* --- 右側手風琴內容 --- */
+    .faq-category { display: none; animation: fadeIn 0.5s ease; }
+    .faq-category.active { display: block; }
+    
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .category-title {
+        font-size: 1.8rem;
+        margin-bottom: 25px;
+        color: #fff;
+        border-left: 5px solid var(--primary-yellow);
+        padding-left: 15px;
+    }
+
+    .accordion-item {
+        background-color: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        margin-bottom: 15px;
+        overflow: hidden;
+        transition: 0.3s;
+    }
+
+    .accordion-header {
+        padding: 20px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 500;
+        font-size: 1.1rem;
+        color: #eee;
+        transition: 0.3s;
+    }
+
+    .accordion-header:hover { color: var(--primary-yellow); background-color: rgba(255,255,255,0.05); }
+    
+    /* 展開狀態 */
+    .accordion-item.active { border-color: var(--primary-yellow); }
+    .accordion-item.active .accordion-header { background-color: #333; color: var(--primary-yellow); font-weight: 700; }
+    .accordion-item.active .accordion-header i { transform: rotate(180deg); }
+
+    .accordion-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+        background-color: #121212; /* 內文深黑底 */
+    }
+
+    .accordion-body p {
+        padding: 25px;
+        margin: 0;
+        color: #ccc;
+        line-height: 1.8;
+        font-size: 1rem;
+    }
+
+    /* --- 未找到問題 CTA --- */
+    .not-found-box {
+        text-align: center;
+        margin-top: 60px;
+        padding: 40px;
+        background-color: #1a1a1a;
+        border: 1px dashed #555;
+        border-radius: 12px;
+    }
+    
+    .not-found-box h3 { color: #fff; margin-bottom: 10px; }
+    .not-found-box p { color: #888; margin-bottom: 25px; }
+    
+    .btn-contact {
+        display: inline-block;
+        padding: 12px 30px;
+        background-color: var(--primary-yellow);
+        color: #000;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+    .btn-contact:hover { background-color: #fff; }
+
+    /* --- RWD 手機版適配 --- */
+    @media (max-width: 768px) {
+        .faq-layout { grid-template-columns: 1fr; gap: 30px; }
+        
+        /* 手機版選單改為橫向滑動 */
+        .faq-sidebar {
+            position: static;
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
+            background: transparent;
+            border: none;
+            gap: 10px;
+            padding-bottom: 5px;
+        }
+        
+        .tab-btn {
+            width: auto;
+            border: 1px solid #333;
+            border-radius: 20px;
+            padding: 10px 20px;
+            background-color: #1f1f1f;
+            display: inline-block;
+        }
+        
+        .tab-btn.active { background-color: var(--primary-yellow); }
+        .tab-btn i { display: none; } /* 手機版隱藏箭頭 */
+        
+        /* 隱藏選單捲軸 */
+        .faq-sidebar::-webkit-scrollbar { display: none; }
+    }
+</style>
+</head>
+<body>
+  <!-- 導航欄 (Header) -->
+    <header>
+        <div class="container nav-wrapper">
+            <!-- Logo 區 -->
+            <a href="index.html" class="brand-logo">
+                <img src="logo.png" alt="EATING-OUT Logo">
+                <span class="brand-text">快帶科技有限公司</span>
+            </a>
+
+            <!-- 手機版漢堡按鈕 -->
+            <div class="mobile-toggle" id="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+
+            <!-- 選單連結 -->
+            <ul class="nav-menu" id="nav-menu">
+                
+                <!-- 1. 首頁 (含下拉) -->
+                <li class="dropdown">
+                    <a href="index.html" class="active">首頁 <i class="fas fa-chevron-down toggle-icon"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#about-section">關於我們</a></li>
+                        <li><a href="#timeline-section">品牌歷程</a></li>
+                    </ul>
+                </li>
+
+                <!-- 2. 產品服務 (多層下拉) -->
+                <li class="dropdown">
+                    <a href="#">產品服務 <i class="fas fa-chevron-down toggle-icon"></i></a>
+                    <ul class="dropdown-menu">
+                        <!-- 同等級項目 1 -->
+                        <li><a href="insights.html">Insights 洞察商家檔案數據</a></li>
+                        
+                        <!-- 同等級項目 2 (含子選單) -->
+                        <li class="dropdown-submenu">
+                            <a href="#" class="submenu-toggle">EATING-OUT 線上點餐 <i class="fas fa-chevron-right arrow-right"></i></a>
+                            <!-- 第三層選單 -->
+                            <ul class="dropdown-menu submenu">
+                                <li><a href="restaurant.html">餐廳端介紹</a></li>
+                                <li><a href="customer.html">顧客端介紹</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- 3. 投資人 -->
+                <li><a href="investor.html">投資人專區</a></li>
+
+                <!-- 4. 常見問題 -->
+                <li><a href="faq.html">常見問題</a></li>
+
+                <!-- 5. 聯絡我們 (按鈕) -->
+                <li><a href="contact.html" class="btn btn-primary nav-btn">聯絡我們</a></li>
+            </ul>
+        </div>
+    </header>
+
+
+    <!-- 標題與搜尋 -->
+    <div class="faq-header">
+       <h1>常見問題中心</h1>
+        <p>操作上有疑問？在這裡快速找到您的解答</p>
+    </div>
+
+    <div class="search-container">
+        <input type="text" id="faq-search-input" class="search-box" placeholder="輸入關鍵字搜尋（例如：發票、更改訂單...）">
+        <i class="fas fa-search search-icon"></i>
+    </div>
+
+    <!-- FAQ 主內容 -->
+    <div class="faq-layout">
+        
+        <!-- 左側選單 -->
+        <aside class="faq-sidebar">
+            <button class="tab-btn active" onclick="openTab(event, 'join')">加入 EATING-OUT <i class="fas fa-chevron-right"></i></button>
+            <button class="tab-btn" onclick="openTab(event, 'merchant')">餐廳端後台操作 <i class="fas fa-chevron-right"></i></button>
+            <button class="tab-btn" onclick="openTab(event, 'customer')">顧客端 APP 使用 <i class="fas fa-chevron-right"></i></button>
+            <button class="tab-btn" onclick="openTab(event, 'account')">帳戶及推薦機制 <i class="fas fa-chevron-right"></i></button>
+        </aside>
+
+        <!-- 右側內容 -->
+        <div class="faq-content-area">
+            
+            <!-- 分類 1 -->
+            <div id="join" class="faq-category active">
+                <h2 class="category-title">加入平台常見問題</h2>
+                <div class="accordion-item"><div class="accordion-header">加入 EATING-OUT 對我的餐廳有什麼實質幫助？<i class="fas fa-chevron-down"></i></div><div class="accordion-body"><p>除了增加曝光度外，最重要的是實現「數位轉型」。我們協助您建立線上菜單，讓顧客預約外帶，不僅能紓緩現場排隊人潮，更能透過後台數據分析，優化備料與營運流程，提升翻桌率與營收。</p></div></div>
+                <div class="accordion-item"><div class="accordion-header">加入 EATING-OUT 需要哪些設備投資？<i class="fas fa-chevron-down"></i></div><div class="accordion-body"><p>非常簡單！您只需要準備一台能上網的平板或智慧型手機即可下載 App 接單做生意。我們不需要您購買昂貴的專用 POS 機。</p></div></div>
+                <div class="accordion-item"><div class="accordion-header">EATING-OUT與一般餐飲 APP 有何不同？<i class="fas fa-chevron-down"></i></div><div class="accordion-body"><p>最大的差別在於我們專注於「預約外帶」而非外送。這意味著您*不需支付高達 30% 以上的平台抽成費用*，每一筆訂單利潤都實實在在回到店家手中。</p></div></div>
+ <div class="accordion-item"><div class="accordion-header">關於平台優惠活動的費用，店家需要負擔嗎？<i class="fas fa-chevron-down"></i></div><div class="accordion-body"><p>平台將不定時舉辦優惠活動向消費者發放折價券，不僅幫助平台提升流量也為店家帶來訂單，費用將由平台全數吸收。款項將扣除必要支出 (如銀行手續費等) 於次月匯至您的指定銀行帳戶，我們希望與您共同成長茁壯，成為長期合作夥伴。店家也可與我們洽談商業合作，進行獨家優惠活動方案，幫助店面在眾多餐飲選擇中脫穎而出。</p></div></div>
+  <div class="accordion-item"><div class="accordion-header">店家是否能夠控制「接單」、「備餐」、「取餐」相關時間？<i class="fas fa-chevron-down"></i></div><div class="accordion-body"><p>為了保障店家權益，我們鼓勵消費者使用線上支付（信用卡/LinePay）。完全可以！依據餐廳客流量變化平台提供餐廳最多 90 分鐘的暫停接單選項，也可靈活調整備餐時間，最短5分鐘，最長可達90分鐘設定。</p></div></div>
+                <div class="accordion-item"><div class="accordion-header">消費者未前來取餐，如何處理並保有權益？<i class="fas fa-chevron-down"></i></div><div class="accordion-body"><p>為了保障店家權益，我們鼓勵消費者使用線上支付（信用卡/LinePay）。若顧客選擇到店付款卻無故未取，您可於後台標記該筆訂單為「惡意棄單」，系統將記錄該用戶行為，嚴重者將停權使用。</p></div></div>
+                <div class="accordion-item"><div class="accordion-header">什麼樣的商家適合加入 EATING-OUT？<i class="fas fa-chevron-down"></i></div><div class="accordion-body"><p>只要是提供餐飲服務的商家都非常歡迎！無論您是連鎖餐廳、獨立小吃店、咖啡廳，甚至是巷口的餐車或攤販，只要有固定的營業地點，都可以加入我們。</p></div></div>
+                <div class="accordion-item"><div class="accordion-header">金流如何收取及計算？<i class="fas fa-chevron-down"></i></div><div class="accordion-body"><p>目前支援「到店付款」、「信用卡」及「LinePay」。線上支付款項將直接進入店家申請的第三方支付平台帳戶中，讓資金更透明。*EATING-OUT 僅協助串接，不經手任何金流*</p></div></div>
+                <div class="accordion-item"><div class="accordion-header">已有現成的 LINE OA，能整合進去嗎？<i class="fas fa-chevron-down"></i></div><div class="accordion-body"><p>可以的！我們會協助您將 EATING-OUT 點餐連結整合至 LINE 官方帳號「圖文選單」中。不論新客/舊客，都可直接在 LINE 裡完成點餐，不需另外下載 App。</p></div></div>
+            </div>
+
+            <!-- 分類 2 -->
+            <div id="merchant" class="faq-category">
+                <h2 class="category-title">餐廳端後台操作</h2>
+                <div class="accordion-item"><div class="accordion-header">連線狀態顯示「連線異常」怎麼辦？<i class="fas fa-chevron-down"></i></div><div class="accordion-body"><p>請先檢查店內的 Wi-Fi 或行動網路訊號是否穩定。若網路正常，請嘗試完全關閉 App 後重新啟動。若狀況持續，請聯繫客服。</p></div></div>
+                <div class="accordion-item"><div class="accordion-header">臨時有事需店休，該如何設定？<i class="fas fa-chevron-down"></i></div><div class="accordion-body"><p>請進入商家管理後台 的「設定」頁面，找到「臨時公休設定」，新增 (+) 臨時公休日期、時間即可。生效後，消費者將無法在指定時間下單。</p></div></div>
+                <div class="accordion-item"><div class="accordion-header">訂單爆量，如何設定等候時間？<i class="fas fa-chevron-down"></i></div><div class="accordion-body"><p>您可在接單畫面右上角，點選「開始/暫停」接單，並依照現場忙碌狀況，自行設定等候時間範圍：至多可設定 5~90 分鐘。</p></div></div>
+                <div class="accordion-item"><div class="accordion-header">某個品項售完了，如何關閉？<i class="fas fa-chevron-down"></i></div><div class="accordion-body"><p>請至「供應狀態選項」頁面，找到該商品，將後方的狀態按鈕切換為「關閉 (Sold Out)」。該商品將會即時在菜單上顯示無法點選。</p></div></div>
+                <div class="accordion-item"><div class="accordion-header">如何設定品項優惠資訊？<i class="fas fa-chevron-down"></i></div><div class="accordion-body"><p>請至「優惠管理」選單，點擊右上角 (+) 新增優惠方案，您可設定單一商品或分類的優惠，優惠類型有折價($)、折扣(%)、贈品三種，設定完成後，優惠會自動顯示在菜單上。</p></div></div>
+                <div class="accordion-item"><div class="accordion-header">有多位員工管理平台，如何設定權限？<i class="fas fa-chevron-down"></i></div><div class="accordion-body"><p>主帳號可以進入「設定」>「權限設定」功能，新增子帳號給員工使用，並可設定不同權限（例如：店員、店經理、擁有者），以確保資料安全。</p></div></div>
+                <div class="accordion-item"><div class="accordion-header">如何開通行動支付、LINE PAY付款方式？<i class="fas fa-chevron-down"></i></div><div class="accordion-body"><p>請至「設定」頁面，找到「餐廳資訊設定」，在付款方式下方開啟欲新增的支付方式，輸入付款 ID 等相關資料，即可完成開通。</p></div></div>
+
+            </div>
+
+            <!-- 分類 3 -->
+            <div id="customer" class="faq-category">
+                <h2 class="category-title">顧客端 APP 使用問題</h2>
+                <div class="accordion-item"><div class="accordion-header">不同地點打開 EATING-OUT APP 顯示店家會不一樣 <i class="fas fa-chevron-down"></i></div><div class="accordion-body"><p>我們以您的實際位置（需啟用定位）為基準，即時顯示您附近的店家。這樣的排序方式能夠提供您附近餐廳的取餐距離參考已評估訂取餐時間。</p></div></div>
+                <div class="accordion-item"><div class="accordion-header">EATING-OUT 支援哪些付款方式？ <i class="fas fa-chevron-down"></i></div><div class="accordion-body"><p>下單完成後，您可依照店家提供的支付方式進行付款（現金/信用卡/Line Pay），部分傳統店家可能尚未申請線上金流服務，因此僅支援「到店付款」。</p></div></div>
+                <div class="accordion-item"><div class="accordion-header">超過取餐時間沒有去取，該怎麼辦？<i class="fas fa-chevron-down"></i></div><div class="accordion-body"><p>無故棄單將會在系統中留下紀錄，建議您立即致電店家告知狀況。＊請注意，為確保店家權益，經店家回報黑名單帳號將無法再到該店消費，平台上經店家回報兩次黑名單紀錄，該帳號將被平台封鎖。</p></div></div>
+                <div class="accordion-item"><div class="accordion-header">下單後想修改訂單，該如何處理？<i class="fas fa-chevron-down"></i></div><div class="accordion-body"><p>若店家狀態為「等待接單」，您可以直接取消訂單並重新下單。若店家已顯示「準備中」，請直接致電店家溝通，視店家製作進度決定是否能修改。</p></div></div>
+                <div class="accordion-item"><div class="accordion-header">請問 發票/收據 要向平台或餐廳索取？ <i class="fas fa-chevron-down"></i></div><div class="accordion-body"><p>由餐廳提供，如有相關需求請於備註說明</p></div></div>
+                <div class="accordion-item"><div class="accordion-header">如何查詢或使用折扣卷？<i class="fas fa-chevron-down"></i></div><div class="accordion-body"><p>您可以到「會員 > 我的折價券」查看目前可使用的折扣券。在預覽訂單頁面，系統會自動帶入可使用的折抵方案，您也可以手動更換。</p></div></div>
+            </div>
+
+            <!-- 分類 4 -->
+            <div id="account" class="faq-category">
+                <h2 class="category-title">帳戶及推薦機制問題</h2>
+                <div class="accordion-item"><div class="accordion-header">為什麼一直收不到手機認證碼？<i class="fas fa-chevron-down"></i></div><div class="accordion-body"><p>請確認手機訊號是否良好，並檢查手機號碼輸入是否正確。若等待超過 60 秒仍未收到，請點選「重新發送」。</p></div></div>
+  <div class="accordion-item"><div class="accordion-header">忘記帳號/密碼怎麼辦？<i class="fas fa-chevron-down"></i></div><div class="accordion-body"><p>在登入頁面點選「忘記密碼」，輸入您的手機號碼，系統將發送驗證碼以協助您重設密碼。</p></div></div>
+  <div class="accordion-item"><div class="accordion-header">如何修改個人資料（姓名、密碼）？<i class="fas fa-chevron-down"></i></div><div class="accordion-body"><p>請至「會員 > 個人資料設定」進行修改。</p></div></div>
+  <div class="accordion-item"><div class="accordion-header">如何推薦朋友加入並獲得獎勵？<i class="fas fa-chevron-down"></i></div><div class="accordion-body"><p>進入 App 的「會員」，點選「我的推薦碼」，您將獲得一組專屬邀請碼。當朋友使用您的邀請碼註冊後，您可獲得 $20 美食金；推薦人數無上限，推薦越多，回饋越多！</p></div></div>
+                <div class="accordion-item"><div class="accordion-header">折扣券使用期限與注意事項？<i class="fas fa-chevron-down"></i></div><div class="accordion-body"><p>1. 有效期限：請留意每張折價券的有效期限，確保在截止日期前使用完畢。<br>
+&nbsp;&nbsp;(1) 首次下載 $100 優惠碼：分為 10 張 $10，需在 3 天內使用完畢。<br>
+&nbsp;&nbsp;(2) 透過推薦分享得到的折扣碼 $20，需在 21 天內使用完畢。<br>
+&nbsp;&nbsp;(3) 折價券過期不補發，請在有效期限內使用完畢。<br>
+2. 折價券僅限使用於單筆消費，取消訂單不補發。<br>
+3. 折價券僅限使用於 EATING-OUT APP，不得兌換現金，也不得於餐廳或其他通路使用該折價券。<br>
+4. EATING-OUT 保留更改折價券使用注意事項的權利，請隨時留意最新的使用條件與規定。</p></div></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 底部 CTA -->
+    <div class="not-found-box">
+        <i class="fas fa-headset" style="font-size: 3rem; color: var(--primary-yellow); margin-bottom: 20px;"></i>
+        <h3>找不到您想要的答案嗎？</h3>
+        <p>別擔心，我們的客服團隊隨時準備為您服務。歡迎透過線上表單詳細說明您的問題。</p>
+        <a href="contact.html" target="_top" class="btn-contact">前往聯絡我們</a>
+    </div>
+
+
+ <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-layout">
+            
+            <!-- 1. 公司資訊 -->
+ <div class="footer-info">
+                <div class="footer-logo">
+                    <img src="logo.png" alt="EATING-OUT">
+                    <span>快帶科技</span>
+                </div>
+                <h4 class="company-name">快帶科技有限公司</h4>
+                <ul class="info-list">
+                    <li><i class="fas fa-id-card"></i> 統編：90249191</li>
+                    <li><i class="fas fa-map-marker-alt"></i> 地址：台南市中西區民生路二段76號4樓A11</li>
+                    <li><i class="fas fa-phone-alt"></i> 電話：06-7030731</li>
+                    <li><i class="fas fa-envelope"></i> 信箱：support@eating-out.co</li>
+                </ul>
+            </div>
+
+            <!-- 2. 網站地圖 (使用 Grid 雙欄) -->
+            <div class="footer-sitemap">
+                <h3>網站地圖</h3>
+                <div class="sitemap-grid">
+                    <!-- 左欄 -->
+                    <ul class="col-left">
+                        <li><a href="index.html">品牌首頁</a></li>
+                        <li><a href="index.html#about-section">關於我們</a></li>
+                        <li><a href="insights.html">EO Insight</a></li>
+                        <li><a href="restaurant.html">餐廳端服務</a></li>
+                    </ul>
+                    <!-- 右欄 -->
+                    <ul class="col-right">
+                        <li><a href="customer.html">顧客端服務</a></li>
+                        <li><a href="investor.html">投資人專區</a></li>
+                        <li><a href="faq.html">常見問題</a></li>
+                        <li><a href="contact.html">聯絡我們</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 3. 條款與社群 -->
+           <div class="footer-social">
+                <h3>條款與社群</h3>
+                <ul>
+                    <li><a href="https://www.privacypolicies.com/live/3c39b265-99a9-4bb6-9d44-1a0d38e95668" target="_blank">服務條款</a></li>
+                    <li><a href="https://www.privacypolicies.com/live/0a9ea377-a2b5-4dcc-b830-562689baf47e" target="_blank">隱私權政策</a></li>
+                </ul>
+                <div class="social-icons-group">
+                    <a href="https://www.facebook.com/eatingoutTW" target="_blank" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/eatingouttw/" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
+                    <a href="https://line.me/R/ti/p/@518vmbpw?oat_content=url" target="_blank" class="social-btn"><i class="fab fa-line"></i></a>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="copyright">
+            &copy; 2026 EATING-OUT Technology Co., Ltd. All Rights Reserved.
+        </div>
+    </div>
+</footer>
+
+
+    <!-- JS 邏輯 -->
+<script src="script.js">
+        // 1. Tab 切換
+        function openTab(evt, categoryName) {
+            // 清空搜尋
+            document.getElementById('faq-search-input').value = '';
+            filterFAQ(''); 
+
+            // 隱藏所有分類
+            var x = document.getElementsByClassName("faq-category");
+            for (var i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+                x[i].classList.remove("active");
+            }
+            
+            // 移除按鈕 active
+            var tablinks = document.getElementsByClassName("tab-btn");
+            for (var i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            
+            // 顯示目標
+            document.getElementById(categoryName).style.display = "block";
+            setTimeout(() => { document.getElementById(categoryName).classList.add("active"); }, 10);
+            
+            if (evt) evt.currentTarget.className += " active";
+        }
+
+        // 2. 手風琴開關
+        const accordions = document.querySelectorAll('.accordion-item');
+        accordions.forEach(item => {
+            item.querySelector('.accordion-header').addEventListener('click', () => {
+                // 關閉其他 (單開模式)
+                accordions.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                        otherItem.querySelector('.accordion-body').style.maxHeight = null;
+                    }
+                });
+                // 切換目前
+                item.classList.toggle('active');
+                const body = item.querySelector('.accordion-body');
+                if (item.classList.contains('active')) body.style.maxHeight = body.scrollHeight + "px";
+                else body.style.maxHeight = null;
+            });
+        });
+
+        // 3. 搜尋功能
+        const searchInput = document.getElementById('faq-search-input');
+        const allCategories = document.querySelectorAll('.faq-category');
+        const allItems = document.querySelectorAll('.accordion-item');
+
+        searchInput.addEventListener('input', (e) => { filterFAQ(e.target.value.toLowerCase().trim()); });
+
+        function filterFAQ(term) {
+            if (term === "") {
+                // 復原模式：只顯示目前 active 的 tab
+                allCategories.forEach(cat => { cat.style.display = 'none'; cat.classList.remove('active'); });
+                allItems.forEach(item => item.style.display = 'block');
+                
+                let activeBtn = document.querySelector('.tab-btn.active');
+                if(activeBtn) {
+                    const catId = activeBtn.getAttribute('onclick').match(/'([^']+)'/)[1];
+                    document.getElementById(catId).style.display = 'block';
+                    setTimeout(() => document.getElementById(catId).classList.add('active'), 10);
+                }
+                return;
+            }
+
+            // 搜尋模式：顯示所有符合項目
+            allCategories.forEach(cat => { cat.style.display = 'block'; cat.classList.add('active'); });
+            
+            allItems.forEach(item => {
+                const q = item.querySelector('.accordion-header').innerText.toLowerCase();
+                const a = item.querySelector('.accordion-body').innerText.toLowerCase();
+                item.style.display = (q.includes(term) || a.includes(term)) ? 'block' : 'none';
+            });
+
+            // 隱藏空分類
+            allCategories.forEach(cat => {
+                if (cat.querySelectorAll('.accordion-item[style="display: block;"]').length === 0) 
+                    cat.style.display = 'none';
+                else 
+                    cat.style.display = 'block';
+            });
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快帶科技有限公司 | EATING-OUT</title>
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.jpg" type="image/jpeg">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome (圖示) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<style>
+
+:root {
+    --primary-yellow: #FFD700;
+    --bg-black: #121212; /* 背景色 */
+    --card-white: #FFFFFF; /* 卡片色 */
+
+}
+
+/* =========================================
+    顧客端 Hero 區塊
+   ========================================= */
+
+/* 1. 區塊背景設定 */
+.cust-hero-section {
+    position: relative;
+    width: 100%;
+    min-height: 800px; 
+    background-image: url('cus_hreo_bk.png'); 
+    background-size: cover;       /* 填滿區塊 */
+    background-position: center;  /* 居中對齊 */
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center; /* 垂直置中 */
+}
+
+/* 2. 內容容器 */
+.cust-hero-grid {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex; 
+    justify-content: flex-start; /* 內容靠左 */
+}
+
+/* 3. 左側文字內容 (限制寬度，避免壓到右邊背景的手機) */
+.cust-hero-content {
+    width: 50%; /* ★ 只佔畫面一半，留右半邊給背景圖的手機 ★ */
+    max-width: 600px;
+    z-index: 2;
+    padding-top: 20px;
+}
+
+/* 標題與按鈕樣式 */
+.cust-hero-content h1 {
+    font-size: 4rem; font-weight: 900; line-height: 1.1; color: #000; margin-bottom: 15px; letter-spacing: -1px;
+}
+.cust-hero-content h1 .highlight-text {
+    font-size: 3.2rem; display: inline-block; position: relative; z-index: 1; margin-top: 10px;
+}
+.cust-hero-content h1 .highlight-text::after {
+    content: ''; position: absolute; bottom: 5px; left: 0; width: 100%; height: 35%;
+    background-color: var(--primary-yellow); z-index: -1; opacity: 0.8; transform: skewX(-10deg);
+}
+.hero-desc {
+    font-size: 1.25rem; color: #444; margin-bottom: 35px; line-height: 1.6; font-weight: 500; white-space: nowrap; 
+}
+.promo-tag {
+    display: inline-flex; align-items: center; gap: 10px; background: var(--primary-yellow); color: #000;
+    padding: 12px 25px; border-radius: 50px; font-weight: 700; font-size: 1.1rem; margin-bottom: 40px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15); animation: bounce 2s infinite;
+}
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.download-btns { display: flex; gap: 15px; }
+.store-btn {
+    display: flex; align-items: center; background: #000; border: 2px solid #000; border-radius: 12px;
+    padding: 10px 25px; color: #fff; text-decoration: none; transition: all 0.3s ease; min-width: 180px;
+}
+.store-btn:hover {
+    background: #1a1a1a; border-color: var(--primary-yellow); box-shadow: 0 0 20px rgba(255, 215, 0, 0.6); transform: translateY(-5px);
+}
+.store-btn i { font-size: 2.2rem; margin-right: 12px; }
+.btn-text { display: flex; flex-direction: column; line-height: 1.2; }
+.btn-text span { font-size: 0.75rem; font-weight: 300; }
+.btn-text strong { font-size: 1.2rem; font-weight: 500; }
+
+
+/* --- RWD 手機版適配 --- */
+@media (max-width: 900px) {
+    .cust-hero-section {
+        min-height: auto;
+        padding: 80px 0; /* 增加一點上下留白 */
+        display: block; /* 取消 Flex，改為堆疊 */    
+        background-position: center center; /* 居中對齊 */
+        background-size: cover;             /* 強制填滿整個區塊，不留黑邊 */
+        background-attachment: scroll;      /* 手機版建議取消視差滾動，避免掉幀 */
+    }
+
+    .cust-hero-grid {
+        display: block; 
+        text-align: center;
+        padding: 0 20px;
+    }
+
+    /* 文字內容 RWD */
+    .cust-hero-content {
+        width: 100%; 
+        max-width: 100%; 
+        padding-left: 0;
+        margin-bottom: 30px; 
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+    }
+
+    .cust-hero-content h1 { font-size: 3rem; }
+    .cust-hero-content h1 .highlight-text { font-size: 2.2rem; }
+    
+
+    .hero-desc { 
+        white-space: normal; 
+        padding: 0 10px;
+    } 
+    
+    .promo-tag { margin: 0 auto 30px auto; }
+    .download-btns { justify-content: center; }
+}
+
+/* =========================================
+    產品介紹  區塊
+   ========================================= */
+
+ /* 1. 介紹區塊背景設定 (全黑) */
+    .features-section {
+        background-color: var(--bg-black);
+        padding: 100px 20px;
+        color: #fff;
+    }
+
+    /* 標題優化 */
+    .section-header {
+        text-align: center;
+        margin-bottom: 80px;
+    }
+    .section-header h2 {
+        font-size: 2.5rem;
+        font-weight: 900;
+        margin: 0 0 15px 0;
+        color: #fff;
+        letter-spacing: 1px;
+    }
+
+    /* 2. Grid 排版 (確保等高關鍵) */
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3欄 */
+        gap: 40px; /* 卡片間距 */
+        max-width: 1200px;
+        margin: 0 auto;
+        /* ★ 關鍵：讓子元素高度拉伸填滿，確保卡片等高 ★ */
+        align-items: stretch; 
+    }
+
+    /* 3. 單個優勢容器 */
+    .feature-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        
+        /* 初始隱藏，給 JS 做動畫用 */
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    /* 4. 上方圖片 (騎在卡片上) */
+    .feature-img {
+        width: 90%; /* 圖片比卡片稍微窄一點點，製造層次 */
+        max-width: 320px;
+        height: auto;
+        object-fit: contain;
+        z-index: 2; /* 在卡片上方 */
+        
+        /* ★ 關鍵：負邊距，讓圖片下半部插入卡片 ★ */
+        margin-bottom: -60px; 
+        
+        transition: transform 0.4s ease;
+        filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3)); /* 圖片陰影 */
+    }
+
+    /* 5. 下方白色卡片 */
+    .feature-card {
+        background-color: var(--card-white);
+        width: 100%;
+        border-radius: 20px;
+        padding: 80px 30px 40px 30px; /* 上方留白給圖片 */
+        text-align: center;
+        color: #121212;
+        
+        /* 預設透明邊框，避免 Hover 時跳動 */
+        border: 3px solid transparent; 
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* 在黑底上的陰影 */
+        
+        /* ★ 關鍵：讓卡片填滿高度 ★ */
+        flex-grow: 1; 
+        display: flex;
+        flex-direction: column;
+        
+        transition: all 0.3s ease;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* 內容文字 */
+    .feature-card h3 {
+        font-size: 1.5rem;
+        font-weight: 800;
+        margin-bottom: 15px;
+        color: #000;
+    }
+    .feature-card p {
+        font-size: 1.05rem;
+        line-height: 1.6;
+        color: #555;
+        margin: 0;
+        flex-grow: 1; /* 讓文字區塊延展 */
+    }
+
+    /* --- 6. Hover 互動動畫 --- */
+    .feature-wrapper:hover .feature-img {
+        transform: translateY(-15px) scale(1.05); /* 圖片上浮並放大 */
+    }
+
+    .feature-wrapper:hover .feature-card {
+        border-color: var(--primary-yellow); /* 亮起黃框 */
+        box-shadow: 0 0 30px rgba(255, 215, 0, 0.3); /* 發出黃色光暈 */
+        transform: translateY(-5px); /* 卡片微上浮 */
+    }
+
+    /* --- 7. JS 觸發顯示動畫類別 --- */
+    .feature-wrapper.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* --- RWD 手機版 --- */
+    @media (max-width: 900px) {
+        .features-grid {
+            grid-template-columns: 1fr; /* 轉單欄 */
+            gap: 80px; /* 增加垂直間距，因為圖片會凸出來 */
+        }
+        
+        .feature-img {
+            width: 70%; /* 手機版圖片縮小 */
+            margin-bottom: -50px;
+        }
+        
+        .section-header h2 { font-size: 2rem; }
+    }
+
+/* =========================================
+    50+合作商家  區塊
+   ========================================= */
+
+ /* --- 灰色分隔線 --- */
+    .hr-dashed-grey {  border: 0;  border-top: 1px dashed #808080;}
+
+ /* --- 無縫輪播關鍵設定 --- */
+    .marquee-container {
+        width: 100%; height:150px
+        overflow: hidden;
+        display: flex;
+        /* 遮罩漸層：讓左右兩邊有淡淡的消失效果，更有質感 */
+        -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+
+    .marquee-track {
+        display: flex;
+        width: fit-content;
+        /* 跑馬燈動畫：30秒跑完一半距離，無限循環 */
+        animation: scroll-left 30s linear infinite; 
+    }
+
+    /* 滑鼠移入時暫停動畫 */
+    .marquee-track:hover {
+        animation-play-state: paused;
+    }
+
+    /* 把 Logo 分成兩個相同的 Group，這是無縫接軌的關鍵 */
+    .marquee-group {
+        display: flex;
+        gap: 30px;         /* 卡片之間的距離 */
+        padding-right: 30px; /* 這裡的 padding 必須等於 gap，確保 Group1 與 Group2 的間距一致 */
+    }
+
+    @keyframes scroll-left {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); } /* 精準移動 50% (剛好是一個 Group 的寬度) */
+    }
+
+    /* --- Logo 卡片設計 --- */
+    .partner-logo {
+        background: #fff; 
+        width: 130px; 
+        height: 130px; 
+        border-radius: 15px;
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
+        padding: 15px; 
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        transition: 0.3s; 
+        flex-shrink: 0;
+    }
+    
+    .partner-logo:hover { 
+        transform: scale(1.1); 
+        box-shadow: 0 0 20px var(--primary-yellow); 
+    }
+    
+    .partner-logo img { 
+        max-width: 100%; 
+        max-height: 100%; 
+        object-fit: contain; 
+    }
+
+    @media (max-width: 768px) {
+        .header h2 { font-size: 1.8rem; }
+        .partner-logo { width: 90px; height: 90px; padding: 10px; }
+        .marquee-group { gap: 15px; padding-right: 15px; } /* 手機版間距縮小 */
+    }
+
+
+
+
+</style>
+</head>
+<body>
+  <!-- 導航欄 (Header) -->
+    <header>
+        <div class="container nav-wrapper">
+            <!-- Logo 區 -->
+            <a href="index.html" class="brand-logo">
+                <img src="logo.png" alt="EATING-OUT Logo">
+                <span class="brand-text">快帶科技有限公司</span>
+            </a>
+
+            <!-- 手機版漢堡按鈕 -->
+            <div class="mobile-toggle" id="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+
+            <!-- 選單連結 -->
+            <ul class="nav-menu" id="nav-menu">
+                
+                <!-- 1. 首頁 (含下拉) -->
+                <li class="dropdown">
+                    <a href="index.html" class="active">首頁 <i class="fas fa-chevron-down toggle-icon"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#about-section">關於我們</a></li>
+                        <li><a href="#timeline-section">品牌歷程</a></li>
+                    </ul>
+                </li>
+
+                <!-- 2. 產品服務 (多層下拉) -->
+                <li class="dropdown">
+                    <a href="#">產品服務 <i class="fas fa-chevron-down toggle-icon"></i></a>
+                    <ul class="dropdown-menu">
+                        <!-- 同等級項目 1 -->
+                        <li><a href="insights.html">Insights 洞察商家檔案數據</a></li>
+                        
+                        <!-- 同等級項目 2 (含子選單) -->
+                        <li class="dropdown-submenu">
+                            <a href="#" class="submenu-toggle">EATING-OUT 線上點餐 <i class="fas fa-chevron-right arrow-right"></i></a>
+                            <!-- 第三層選單 -->
+                            <ul class="dropdown-menu submenu">
+                                <li><a href="restaurant.html">餐廳端介紹</a></li>
+                                <li><a href="customer.html">顧客端介紹</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- 3. 投資人 -->
+                <li><a href="investor.html">投資人專區</a></li>
+
+                <!-- 4. 常見問題 -->
+                <li><a href="faq.html">常見問題</a></li>
+
+                <!-- 5. 聯絡我們 (按鈕) -->
+                <li><a href="contact.html" class="btn btn-primary nav-btn">聯絡我們</a></li>
+            </ul>
+        </div>
+    </header>
+
+<!-- 顧客端 Hero 區塊 -->
+<section class="cust-hero-section">
+    <div class="container cust-hero-grid">
+        
+        <!-- 左側內容  -->
+        <div class="cust-hero-content">
+            <h1>
+                EATING-OUT<br>
+                <span class="highlight-text">小資族線上點餐好幫手</span>
+            </h1>
+            <p class="hero-desc">不論是巷口乾麵還是排隊名店，打開 EATING-OUT，美味一鍵預約。</p>
+            
+            <!-- 優惠標籤 -->
+            <div class="promo-tag">
+                <i class="fas fa-gift"></i>
+                限時優惠：首次註冊享 $100 美食金折扣
+            </div>
+
+            <!-- 下載按鈕 -->
+            <div class="download-btns">
+                <a href="#" class="store-btn">
+                    <i class="fab fa-apple"></i>
+                    <div class="btn-text">
+                        <span>Download on the</span>
+                        <strong>App Store</strong>
+                    </div>
+                </a>
+                <a href="#" class="store-btn">
+                    <i class="fab fa-google-play"></i>
+                    <div class="btn-text">
+                        <span>GET IT ON</span>
+                        <strong>Google Play</strong>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- 產品優勢區塊 -->
+<section class="features-section">
+    <div class="container">
+        
+        <!-- 主標題 -->
+        <div class="section-header">
+            <h2>開啟您的數位訂餐生活</h2>
+        </div>
+
+        <!-- 卡片 Grid -->
+        <div class="features-grid">
+            
+            <!-- 優勢 1 -->
+            <div class="feature-wrapper scroll-reveal">
+                <!-- 上方圖片 (騎在卡片上) -->
+                <img src="feature1.png" alt="線上預約免排隊" class="feature-img" onerror="this.src='https://via.placeholder.com/400x350?text=No+Queue'">
+                
+                <!-- 下方白色卡片 -->
+                <div class="feature-card">
+                    <h3>線上預約免排隊</h3>
+                    <p>隨時隨地都能點，預訂優先製作，支援多元支付，外帶拿了就走，省時又帥氣。</p>
+                </div>
+            </div>
+
+            <!-- 優勢 2 -->
+            <div class="feature-wrapper scroll-reveal">
+                <img src="feature2.png" alt="外帶自取店內價" class="feature-img" onerror="this.src='https://via.placeholder.com/400x350?text=Best+Price'">
+                <div class="feature-card">
+                    <h3>外帶自取店內價</h3>
+                    <p>不向消費者加收服務費，享受與店內內用相同價格，免去外送平台高額溢價。</p>
+                </div>
+            </div>
+
+            <!-- 優勢 3 -->
+            <div class="feature-wrapper scroll-reveal">
+                <img src="feature3.png" alt="i 人友善免通話" class="feature-img" onerror="this.src='https://via.placeholder.com/400x350?text=Easy+Order'">
+                <div class="feature-card">
+                    <h3>i 人友善免通話</h3>
+                    <p>害怕打電話訂餐？擔心店員聽錯餐點？透過 App 點選清楚明瞭，減少溝通落差。</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<hr class="hr-dashed-grey">
+<br>
+<br>
+ <div class="section-header">
+        <h2>超過 50+ 人氣店家合作</h2>
+        <p>從在地小吃到連鎖品牌，我們持續擴大服務版圖</p>
+        <br>
+    </div>
+
+    <!-- 輪播容器 -->
+    <div class="marquee-container">
+        <div class="marquee-track">
+          
+            <!-- ★ 第一組 Logo ★ -->
+            <div class="marquee-group">
+              <div class="partner-logo"><img src="https://helenhsu0731.github.io/eo_offical-web.github.io/hongya.png" alt="弘爺漢堡"></div>
+              <div class="partner-logo"><img src="https://helenhsu0731.github.io/eo_offical-web.github.io/fruitforest.png" alt="蘇果森林"></div>
+              <div class="partner-logo"><img src="https://helenhsu0731.github.io/eo_offical-web.github.io/zhengzhong.png" alt="正忠排骨飯"></div>
+              <div class="partner-logo"><img src="https://helenhsu0731.github.io/eo_offical-web.github.io/qing3hao.png" alt="飯丸屋"></div>
+              <div class="partner-logo"><img src="https://helenhsu0731.github.io/eo_offical-web.github.io/riceball.png" alt="慶三號"></div>
+              <div class="partner-logo"><img src="https://helenhsu0731.github.io/eo_delivery/logo/1.jpg" alt="綠蔬事務所"></div>
+              <div class="partner-logo"><img src="https://helenhsu0731.github.io/eo_delivery/logo/2.jpg" alt="小白屋"></div>
+              <div class="partner-logo"><img src="https://helenhsu0731.github.io/eo_delivery/logo/3.jpg" alt="金吉伊山壽司"></div>
+              <div class="partner-logo"><img src="https://helenhsu0731.github.io/eo_delivery/logo/4.jpg" alt="沛瑪刈包章魚燒"></div>
+              <div class="partner-logo"><img src="https://helenhsu0731.github.io/eo_delivery/logo/5.jpg" alt="木鱉果牛肉麵"></div>
+            </div>
+
+            <!-- ★ 第二組 Logo (完全複製第一組，程式會無縫接軌) ★ -->
+            <div class="marquee-group">
+              <div class="partner-logo"><img src="https://helenhsu0731.github.io/eo_offical-web.github.io/hongya.png" alt="弘爺漢堡"></div>
+              <div class="partner-logo"><img src="https://helenhsu0731.github.io/eo_offical-web.github.io/fruitforest.png" alt="蘇果森林"></div>
+              <div class="partner-logo"><img src="https://helenhsu0731.github.io/eo_offical-web.github.io/zhengzhong.png" alt="正忠排骨飯"></div>
+              <div class="partner-logo"><img src="https://helenhsu0731.github.io/eo_offical-web.github.io/qing3hao.png" alt="飯丸屋"></div>
+              <div class="partner-logo"><img src="https://helenhsu0731.github.io/eo_offical-web.github.io/riceball.png" alt="慶三號"></div>
+              <div class="partner-logo"><img src="https://helenhsu0731.github.io/eo_delivery/logo/1.jpg" alt="綠蔬事務所"></div>
+              <div class="partner-logo"><img src="https://helenhsu0731.github.io/eo_delivery/logo/2.jpg" alt="小白屋"></div>
+              <div class="partner-logo"><img src="https://helenhsu0731.github.io/eo_delivery/logo/3.jpg" alt="金吉伊山壽司"></div>
+              <div class="partner-logo"><img src="https://helenhsu0731.github.io/eo_delivery/logo/4.jpg" alt="沛瑪刈包章魚燒"></div>
+              <div class="partner-logo"><img src="https://helenhsu0731.github.io/eo_delivery/logo/5.jpg" alt="木鱉果牛肉麵"></div>
+            </div>
+
+        </div>
+    </div>
+<br>
+<br>
+<br>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-layout">
+            
+            <!-- 1. 公司資訊 -->
+ <div class="footer-info">
+                <div class="footer-logo">
+                    <img src="logo.png" alt="EATING-OUT">
+                    <span>快帶科技</span>
+                </div>
+                <h4 class="company-name">快帶科技有限公司</h4>
+                <ul class="info-list">
+                    <li><i class="fas fa-id-card"></i> 統編：90249191</li>
+                    <li><i class="fas fa-map-marker-alt"></i> 地址：台南市中西區民生路二段76號4樓A11</li>
+                    <li><i class="fas fa-phone-alt"></i> 電話：06-7030731</li>
+                    <li><i class="fas fa-envelope"></i> 信箱：support@eating-out.co</li>
+                </ul>
+            </div>
+
+            <!-- 2. 網站地圖  -->
+            <div class="footer-sitemap">
+                <h3>網站地圖</h3>
+                <div class="sitemap-grid">
+                    <!-- 左欄 -->
+                    <ul class="col-left">
+                        <li><a href="index.html">品牌首頁</a></li>
+                        <li><a href="index.html#about-section">關於我們</a></li>
+                        <li><a href="insights.html">EO Insight</a></li>
+                        <li><a href="restaurant.html">餐廳端服務</a></li>
+                    </ul>
+                    <!-- 右欄 -->
+                    <ul class="col-right">
+                        <li><a href="customer.html">顧客端服務</a></li>
+                        <li><a href="investor.html">投資人專區</a></li>
+                        <li><a href="faq.html">常見問題</a></li>
+                        <li><a href="contact.html">聯絡我們</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 3. 條款與社群 -->
+           <div class="footer-social">
+                <h3>條款與社群</h3>
+                <ul>
+                    <li><a href="https://www.privacypolicies.com/live/3c39b265-99a9-4bb6-9d44-1a0d38e95668" target="_blank">服務條款</a></li>
+                    <li><a href="https://www.privacypolicies.com/live/0a9ea377-a2b5-4dcc-b830-562689baf47e" target="_blank">隱私權政策</a></li>
+                </ul>
+                <div class="social-icons-group">
+                    <a href="https://www.facebook.com/eatingoutTW" target="_blank" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/eatingouttw/" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
+                    <a href="https://line.me/R/ti/p/@518vmbpw?oat_content=url" target="_blank" class="social-btn"><i class="fab fa-line"></i></a>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="copyright">
+            &copy; 2026 EATING-OUT Technology Co., Ltd. All Rights Reserved.
+        </div>
+    </div>
+</footer>
+
+
+<script src="script.js">
+   document.addEventListener("DOMContentLoaded", function() {
+        const revealElements = document.querySelectorAll('.scroll-reveal');
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // 加入延遲，製造依序出現的效果
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 150); 
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            root: null,
+            threshold: 0.15 // 露出 15% 時觸發
+        });
+
+        revealElements.forEach(el => observer.observe(el));
+    });
+
+    </script>
+
+</body>
+</html>
