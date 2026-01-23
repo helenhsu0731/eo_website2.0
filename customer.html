@@ -600,8 +600,29 @@
 </footer>
 
 
-<script src="script.js">
-  
+<script src="script.js"> </script>
+ <script>
+   document.addEventListener("DOMContentLoaded", function() {
+        const revealElements = document.querySelectorAll('.scroll-reveal');
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // 加入延遲，製造依序出現的效果
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 150); 
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            root: null,
+            threshold: 0.15 // 露出 15% 時觸發
+        });
+
+        revealElements.forEach(el => observer.observe(el));
+    });
+
     </script>
 
 </body>
