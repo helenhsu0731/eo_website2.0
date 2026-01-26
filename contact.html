@@ -209,22 +209,35 @@ textarea.form-control { resize: vertical; min-height: 120px; }
                     <a href="index.html">首頁 <i class="fas fa-chevron-down toggle-icon"></i></a>
                     <ul class="dropdown-menu">
                         <li><a href="index.html#about-section">關於我們</a></li>
-                        <li><a href="index.html#timeline-section">品牌歷程</a></li>
                     </ul>
                 </li>
-                <li class="dropdown">
-                    <a href="#">產品服務 <i class="fas fa-chevron-down toggle-icon"></i></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="insights.html">Insights 洞察商家檔案數據</a></li>
-                        <li class="dropdown-submenu">
-                            <a href="#" class="submenu-toggle">EATING-OUT 線上點餐 <i class="fas fa-chevron-right arrow-right"></i></a>
-                            <ul class="dropdown-menu submenu">
-                                <li><a href="restaurant.html">餐廳端介紹</a></li>
-                                <li><a href="customer.html">顧客端介紹</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+
+                 <!-- 2. 產品服務  -->
+               <li class="dropdown">
+               <a href="#">產品服務 <i class="fas fa-chevron-down toggle-icon"></i></a>
+    
+                   <!-- 第一層下拉選單 -->
+                   <ul class="dropdown-menu">
+        
+                       <!-- 項目 1: 線上點餐 -->
+                       <li class="dropdown-submenu">
+                           <a href="#" class="submenu-toggle">EATING-OUT 線上點餐 <i class="fas fa-chevron-right arrow-right"></i></a>
+            
+                       <!-- 第二層下拉選單 -->
+                         <ul class="submenu">
+                             <li><a href="restaurant.html">餐廳端介紹</a></li>
+                             <li><a href="customer.html">顧客端介紹</a></li>
+                         </ul>
+                       </li>
+
+                       <!-- 項目 2: Insights -->
+                       <li><a href="insights.html">Insights 洞察商家檔案數據</a></li>
+
+                   </ul>
                 </li>
+
+
+
                 <li><a href="investor.html">投資人專區</a></li>
                 <li><a href="faq.html">常見問題</a></li>
                 <li><a href="contact.html" class="btn btn-primary nav-btn">聯絡我們</a></li>
@@ -352,10 +365,10 @@ textarea.form-control { resize: vertical; min-height: 120px; }
     </div>
 </footer>
 
-<!-- 引入共用 JS (處理 Menu 等) -->
+
 <script src="script.js"></script>
 
-<!-- 頁面專屬 JS：處理表單送出 (含手機版修復) -->
+<!-- 頁面專屬 JS：處理表單送出 -->
 <script>
     // 請確認此 URL 是否為您部署的最新版本 Web App URL
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxJq61fpxTZs21eDe1CewQ_4sqXKMTfQ3ZFXH1MsZHaM2lbVejNThMXH8Njb_mMdl4G/exec';
