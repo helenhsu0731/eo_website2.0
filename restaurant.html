@@ -379,8 +379,8 @@
 
 /* 4. 加值服務 */
 .addon-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px;
-    max-width: 1000px; margin-left: auto; margin-right: auto;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 40px;
+    max-width: 1200px; margin-left: auto; margin-right: auto;
 }
 .addon-card {
      /* 1. 玻璃背景：低透明度的白色 */
@@ -392,7 +392,7 @@
     
     /* 3. 玻璃邊框：細緻的半透明白線 */
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 20px; padding: 40px; text-align: center;
+    border-radius: 20px; padding: 35px; text-align: center;
     position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     transition: all 0.3s ease;
 }
@@ -612,9 +612,8 @@
     </div>
 </section>
 
-<!-- 3. 轉型痛點 (寬版 2x2 橫式卡片) -->
+<!-- 3. 轉型痛點 (2x2 橫式) -->
 <section class="section-padding" style="background-color: #1a1a1a;">
-    <!-- 改用 container-wide 讓寬度更寬 -->
     <div class="container-wide">
         
         <div class="section-header">
@@ -633,10 +632,10 @@
                     <h3>智慧接單與菜單管理</h3>
                     <p class="pain-subtitle">告別接單混亂，備餐更從容</p>
                     <ul>
-                        <li><i class="fas fa-check-circle"></i> 菜單一鍵即時更新，無需重印</li>
                         <li><i class="fas fa-check-circle"></i> 自動接單減少電話干擾</li>
+                        <li><i class="fas fa-check-circle"></i> 訂單自動列印，免手抄</li>
                         <li><i class="fas fa-check-circle"></i> 庫存即時控管，防止超賣</li>
-                        <li><i class="fas fa-check-circle"></i> 備貨量精準預估，降低耗損</li>
+                        <li><i class="fas fa-check-circle"></i> 預約訂單，非營業時間商機不間斷</li>
                     </ul>
                 </div>
             </div>
@@ -652,8 +651,9 @@
                     <ul>
                         <li><i class="fas fa-check-circle"></i> 註記惡意棄單，共享資訊防護</li>
                         <li><i class="fas fa-check-circle"></i> 可透過訂單直接聯繫客戶</li>
-                        <li><i class="fas fa-check-circle"></i> 獨家餐點離峰優惠設定</li>
+                        <li><i class="fas fa-check-circle"></i> 獨家「餐點離峰時段優惠」設定</li>
                         <li><i class="fas fa-check-circle"></i> 平台新戶$100美食金，協助推廣</li>
+                        <li><i class="fas fa-check-circle"></i> 官方百萬流量社群平台免費推廣</li>
                     </ul>
                 </div>
             </div>
@@ -700,7 +700,7 @@
 <section class="section-padding" style="background-color: #121212;">
     <div class="container">
         <div class="section-header">
-            <h2>其他加值服務</h2>
+            <h2>其他服務</h2>
             <div class="title-underline"></div>
         </div>
 
@@ -718,7 +718,20 @@
                 </div>
             </div>
 
-            <!-- 服務 2: EO Insights -->
+            <!-- 服務 2: LINE OA 串接 -->
+            <div class="addon-card">
+                <h3>LINE OA 串接</h3>
+                <div class="tags">
+                    <span>#累積會員</span>
+                    <span>#線上點餐</span>
+                </div>
+                <div class="addon-body">
+                    <img src="line_order.png" alt="LINE OA">
+                    <p>整合LINE圖文選單，不需下載App可直接line線上點餐，有效經營保有客流量。</p>
+                </div>
+            </div>
+
+            <!-- 服務 3: EO Insights -->
             <div class="addon-card">
                 <h3>EO Insights</h3>
                 <div class="tags">

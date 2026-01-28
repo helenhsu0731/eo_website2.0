@@ -9,6 +9,294 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
+
+<style>
+
+/* 1. 首頁 Hero */
+.home-hero {
+    position: relative;
+    background: url('hero-bg.jpg') no-repeat center center/cover;
+    height: 90vh; 
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: -72px; 
+    padding-top: 72px;
+}
+
+.home-hero .hero-title { font-size: 4.5rem; font-weight: 900; color: #fff; margin-bottom: 15px; line-light:0.8; }
+.home-hero .hero-title .highlight { line-height: 1.2; color: var(--primary-yellow)}
+.home-hero .hero-desc { font-size: 1.8rem; color: #eee; max-width: 700px; margin: 0 auto 40px; font-weight: 300; letter-spacing: 3px;}
+.hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 1; }
+.hero-content { position: relative; z-index: 2; }
+.hero-btns { display: flex; gap: 20px; justify-content: center; }
+
+
+/* 2. 引導式提問  (單一輪播) */
+
+.problems-section { background-color: var(--bg-black);color: #fff; padding-bottom: 100px;}
+
+/* 輪播外框 */
+.problem-slider {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow: hidden; /* 隱藏超出的部分 */
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    background: #1a1a1a; /* 深灰底色 */
+}
+
+/* 軌道 (Flex 排列) */
+.slider-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out; /* 滑動動畫 */
+    width: 400%; /* 4張投影片 = 400% 寬度 */
+}
+
+/* 單張投影片 */
+.slide-item {
+    width: 25%; /* 每張佔軌道的 1/4 (即 100%) */
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+/* 左側圖片 */
+.slide-img {
+    flex: 1;
+    height: 450px; /* 固定高度 */
+    overflow: hidden;
+}
+
+.slide-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.slide-item:hover .slide-img img {
+    transform: scale(1.05); /* Hover 放大特效 */
+}
+
+/* 右側文字 */
+.slide-content {
+    flex: 1;
+    padding: 50px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.slide-icon {
+    font-size: 3rem;
+    color: var(--primary-yellow);
+    margin-bottom: 20px;
+}
+
+.slide-content h3 {
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    color: #fff;
+    line-height: 1.3;
+}
+
+.slide-content p {
+    font-size: 1.1rem;
+    color: #ccc;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.btn-slide {
+    display: inline-block;
+    padding: 12px 30px;
+    background: transparent;
+    color: var(--primary-yellow);
+    border: 2px solid var(--primary-yellow);
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: 0.3s;
+    width: fit-content;
+}
+
+.btn-slide:hover {
+    background: var(--primary-yellow);
+    color: #000;
+}
+
+/* --- 控制按鈕 (左右箭頭) --- */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    border: none;
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 10;
+}
+.slider-btn:hover { background: var(--primary-yellow); color: #000; }
+.prev-btn { left: 20px; }
+.next-btn { right: 20px; }
+
+/* --- 指示點 (Dots) --- */
+.slider-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.dot {
+    width: 12px; height: 12px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.dot.active {
+    background: var(--primary-yellow);
+    transform: scale(1.2);
+}
+
+
+/* 3. 特色相冊 (Masonry / Grid) */
+.gallery-section {
+    background-color: #fff; /* 白底區塊，增加對比 */
+}
+
+.gallery-section .section-header h2 {
+    color: #121212; /* 改回黑字 */
+}
+
+.gallery-grid {
+    display: grid;
+    /* 定義 Grid 佈局：4欄 */
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 250px; /* 每列高度 */
+    gap: 20px;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    background: #000;
+}
+
+.gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    opacity: 0.9; /* 預設稍微暗一點 */
+}
+
+/* 特殊卡片尺寸設定 */
+.item-large {
+    grid-column: span 2; /* 佔2欄寬 */
+    grid-row: span 2;    /* 佔2列高 */
+}
+
+
+/* 懸停遮罩特效 */
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    color: #fff;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: 0.4s ease;
+}
+
+.gallery-overlay h3 { font-size: 1.4rem; margin-bottom: 5px; color: var(--primary-yellow); }
+.gallery-overlay p { font-size: 0.9rem; color: #ddd; margin-bottom: 15px; }
+
+/* Hover 互動 */
+.gallery-item:hover .gallery-img {
+    transform: scale(1.1);
+    opacity: 0.4; /* 圖片變暗，凸顯文字 */
+}
+
+.gallery-item:hover .gallery-overlay {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* 4. 優惠及聯絡 CTA (漸層背景) */
+.final-cta-section {
+    background-color: var(--primary-yellow);
+    padding: 80px 20px;
+}
+
+.cta-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.3); /* 半透明白底 */
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 60px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.cta-text h2 {
+    font-size: 2.5rem;
+    color: #3f2b96; /* 深藍色字，配合淡藍底 */
+    margin-bottom: 15px;
+    font-weight: 900;
+}
+
+.cta-text p {
+    font-size: 1.2rem;
+    color: #333;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* RWD 適配 */
+@media (max-width: 900px) {
+    .home-hero .hero-title { font-size: 2.8rem; line-height: 1.3;}
+    .home-hero .hero-desc { font-size: 1.3rem; letter-spacing: 1px; line-height: 1.6; padding: 0 10px;}
+    
+    .gallery-grid {
+        grid-template-columns: 1fr; /* 手機版改單欄 */
+        grid-auto-rows: 250px;
+    }
+    .item-large, .item-wide { grid-column: span 1; grid-row: span 1; } /* 取消跨欄 */
+    .cta-flex { flex-direction: column; text-align: center; gap: 30px; padding: 40px 20px; }
+    
+    .slide-item { flex-direction: column; }
+    .slide-img { width: 100%; height: 250px; }
+    .slide-content { padding: 30px 20px; text-align: center; align-items: center; }
+    .slide-content h3 { font-size: 1.6rem; }
+    .slider-btn { display: none; /* 手機版隱藏箭頭，用滑動或點點 */ }
+
+
+
+
+}
+</style>
+
 <body>
 
     <!-- 導航欄 (Header) -->
@@ -24,15 +312,12 @@
             <div class="mobile-toggle" id="mobile-menu-btn"><i class="fas fa-bars"></i></div>
 
             <!-- 選單連結 -->
-            <ul class="nav-menu" id="nav-menu">
-                
+            <ul class="nav-menu" id="nav-menu">                
                 <!-- 1. 首頁 (含下拉) -->
                 <li class="dropdown">
                     <a href="index.html" class="active">首頁 <i class="fas fa-chevron-down toggle-icon"></i></a>
                     <ul class="dropdown-menu"><li><a href="#about-section">關於我們</a></li></ul>
-                </li>
-
-                
+                </li>                
                <!-- 2. 產品服務  -->
                <li class="dropdown">
                <a href="#">產品服務 <i class="fas fa-chevron-down toggle-icon"></i></a>
@@ -42,22 +327,17 @@
         
                        <!-- 項目 1: 線上點餐 -->
                        <li class="dropdown-submenu">
-                           <a href="#" class="submenu-toggle">EATING-OUT 線上點餐 <i class="fas fa-chevron-right arrow-right"></i></a>
-            
+                           <a href="#" class="submenu-toggle">EATING-OUT 線上點餐 <i class="fas fa-chevron-right arrow-right"></i></a>            
                        <!-- 第二層下拉選單 -->
                          <ul class="submenu">
                              <li><a href="restaurant.html">餐廳端介紹</a></li>
                              <li><a href="customer.html">顧客端介紹</a></li>
                          </ul>
                        </li>
-
                        <!-- 項目 2: Insights -->
                        <li><a href="insights.html">Insights 洞察商家檔案數據</a></li>
-
                    </ul>
                 </li>
-
-
                 <!-- 3. 投資人 -->
                 <li><a href="investor.html">投資人專區</a></li>
 
@@ -70,14 +350,183 @@
         </div>
     </header>
 
-    <!-- Hero 區塊 -->
-    <section class="hero-base" style="background-image: url('hero-bg.jpg');">
-        <div class="hero-overlay"></div>
-        <div class="container hero-content">
-            <h1>外帶不排隊，<span>獲利翻倍</span></h1>
-            <p>打造餐飲業最強 SaaS 中台，連接商家與消費者的智慧橋樑。</p>
+  <!-- 1. 首頁 Hero -->
+<section class="home-hero">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+        <h1 class="hero-title">簡單一機<br><span class="highlight">訂單輕鬆上門</span></h1>
+        <p class="hero-desc">EATING-OUT 讓您的美味，不只是侷限於店內</p>
+        <div class="hero-btns">
+            <a href="contact.html" class="btn btn-primary">立即免費諮詢</a>
+            <a href="#features-gallery" class="btn btn-outline-white">了解更多服務</a>
         </div>
-    </section>
+    </div>
+</section>
+
+<!-- 2. 引導式提問 (輪播版) -->
+<section class="section-padding problems-section">
+    <div class="container">
+        
+        <!-- 標題區 -->
+        <div class="section-header">
+            <h2>你也遇到這些經營難題嗎？</h2>
+            <p>別擔心，EATING-OUT 專為解決這些痛點而生</p>
+        </div>
+        
+        <!-- 輪播容器 -->
+        <div class="problem-slider">
+            
+            <!-- 輪播軌道 -->
+            <div class="slider-track" id="sliderTrack">
+                
+                <!-- Slide 1: 接單混亂 -->
+                <div class="slide-item">
+                    <div class="slide-img">
+                        <img src="pain1.jpg" alt="電話接不完" onerror="this.src='https://via.placeholder.com/600x400/333/FFD700?text=Busy+Phone'">
+                    </div>
+                    <div class="slide-content">
+                        <div class="slide-icon"><i class="fas fa-phone-slash"></i></div>
+                        <h3>電話接不完，容易漏單？</h3>
+                        <p>正忙著出餐還要接電話？手抄訂單字跡潦草導致做錯餐？<br>EATING-OUT 線上點餐系統，讓顧客自主下單，減少電話干擾，訂單準確無誤。</p>
+                        <a href="restaurant.html" class="btn-slide">了解智慧接單 &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Slide 2: 排隊久候 -->
+                <div class="slide-item">
+                    <div class="slide-img">
+                        <img src="pain2.jpg" alt="排隊久候" onerror="this.src='https://via.placeholder.com/600x400/333/FFD700?text=Long+Queue'">
+                    </div>
+                    <div class="slide-content">
+                        <div class="slide-icon"><i class="fas fa-user-clock"></i></div>
+                        <h3>現場排隊久候，客訴頻傳？</h3>
+                        <p>尖峰時段人潮擁擠，顧客等到不耐煩？<br>支援預約外帶與內用掃碼，有效分流點餐人潮，縮短等待時間，提升顧客滿意度。</p>
+                        <a href="customer.html" class="btn-slide">看顧客端體驗 &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Slide 3: 評論管理 -->
+                <div class="slide-item">
+                    <div class="slide-img">
+                        <img src="pain3.jpg" alt="評論管理" onerror="this.src='https://via.placeholder.com/600x400/333/FFD700?text=Review+Manage'">
+                    </div>
+                    <div class="slide-content">
+                        <div class="slide-icon"><i class="fas fa-star-half-alt"></i></div>
+                        <h3>Google 評論沒空管，形象受損？</h3>
+                        <p>負評長期滯留無人回應，影響新客上門意願？<br>EO Insights 幫您整合全台分店評論，AI 智能回覆助手，24小時守護您的數位門面。</p>
+                        <a href="insights.html" class="btn-slide">探索 EO Insights &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Slide 4: 平台抽成 -->
+                <div class="slide-item">
+                    <div class="slide-img">
+                        <img src="pain4.jpg" alt="平台抽成" onerror="this.src='https://via.placeholder.com/600x400/333/FFD700?text=High+Fee'">
+                    </div>
+                    <div class="slide-content">
+                        <div class="slide-icon"><i class="fas fa-hand-holding-usd"></i></div>
+                        <h3>平台抽成高，利潤被吃掉？</h3>
+                        <p>辛辛苦苦做生意，利潤卻被外送平台抽走一大半？<br>我們堅持免抽成模式，僅收合理的月費，讓每一筆訂單的利潤都實實在在回到您手中。</p>
+                        <a href="restaurant.html" class="btn-slide">查看收費方案 &rarr;</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 控制按鈕 -->
+            <button class="slider-btn prev-btn" onclick="moveSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+            <button class="slider-btn next-btn" onclick="moveSlide(1)"><i class="fas fa-chevron-right"></i></button>
+
+            <!-- 指示點 -->
+            <div class="slider-dots" id="sliderDots">
+                <span class="dot active" onclick="goToSlide(0)"></span>
+                <span class="dot" onclick="goToSlide(1)"></span>
+                <span class="dot" onclick="goToSlide(2)"></span>
+                <span class="dot" onclick="goToSlide(3)"></span>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- 3. 特色相冊 (圖框式排版) -->
+<section class="section-padding gallery-section" id="features-gallery">
+    <div class="container">
+        <div class="section-header">
+            <h2>全方位餐飲解決方案</h2>
+            
+        </div>
+
+        <div class="gallery-grid">
+            <!-- 特色 1 (大圖) -->
+            <div class="gallery-item item-large">
+                <img src="adv1.jpg" alt="智慧接單" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3>智慧接單管理</h3>
+                    <p>手機即是接單機，隨時隨地掌握營收狀況。</p>
+                    <a href="restaurant.html" class="btn btn-sm btn-primary">查看詳情</a>
+                </div>
+            </div>
+
+            <!-- 特色 2 -->
+            <div class="gallery-item">
+                <img src="adv2.jpg" alt="會員經營" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3>熟客會員經營</h3>
+                    <p>自動累積會員，精準推播優惠。</p>
+                    <a href="restaurant.html" class="btn btn-sm btn-primary">查看詳情</a>
+                </div>
+            </div>
+
+            <!-- 特色 3 -->
+            <div class="gallery-item">
+                <img src="dashboard.png" alt="數據洞察" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3>營運數據洞察</h3>
+                    <p>視覺化報表，一眼看懂熱銷排行。</p>
+                    <a href="insights.html" class="btn btn-sm btn-primary">查看詳情</a>
+                </div>
+            </div>
+
+            <!-- 特色 4 -->
+            <div class="gallery-item">
+                <img src="channel4.png" alt="Google整合" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3>Google 商家整合</h3>
+                    <p>地圖直接點餐，搜尋流量變現。</p>
+                    <a href="insights.html" class="btn btn-sm btn-primary">查看詳情</a>
+                </div>
+            </div>
+
+            <!-- 特色 5 (大圖) -->
+            <div class="gallery-item">
+                <img src="adv3.jpg" alt="顧客體驗" class="gallery-img" style="object-fit: contain; background: #222;">
+                <div class="gallery-overlay">
+                    <h3>極致流暢的點餐體驗</h3>
+                    <p>免下載 App 也能點，LINE / Web / App 全通路支援。</p>
+                    <a href="customer.html" class="btn btn-sm btn-primary">查看詳情</a>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+             <a href="restaurant.html" class="btn btn-outline-white" style="border-color:#333; color:#333;">了解更多產品服務 &rarr;</a>
+        </div>
+    </div>
+</section>
+
+<!-- 4. 優惠與聯絡 CTA -->
+<section class="final-cta-section">
+    <div class="container cta-flex">
+        <div class="cta-text">
+            <h2> EATING-OUT 協助您接下<br> <span style="color:#000;">第一筆線上生意</span></h2>
+            <p>現在預約，專人協助您免費體驗及菜單建置。</p>
+        </div>
+        <div class="cta-btn-box">
+            <a href="contact.html" class="btn btn-black-cta">預約免費諮詢</a>
+        </div>
+    </div>
+</section>
 
     
 
@@ -148,5 +597,65 @@
 
     <!-- JS 腳本 -->
     <script src="script.js"></script>
+
+
+// --- 首頁痛點輪播 (Slider) ---
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const track = document.getElementById('sliderTrack');
+    const dots = document.querySelectorAll('.dot');
+    
+    if (track) {
+        let currentIndex = 0;
+        const totalSlides = 4; // 總張數
+        let autoPlayInterval;
+
+        // 更新輪播位置
+        function updateSlider() {
+            track.style.transform = `translateX(-${currentIndex * 25}%)`; // 每次移動 25% (因 width: 400%)
+            
+            // 更新點點
+            dots.forEach((dot, index) => {
+                if (index === currentIndex) dot.classList.add('active');
+                else dot.classList.remove('active');
+            });
+        }
+
+        // 切換上一張/下一張
+        window.moveSlide = function(direction) {
+            currentIndex += direction;
+            if (currentIndex < 0) currentIndex = totalSlides - 1;
+            if (currentIndex >= totalSlides) currentIndex = 0;
+            updateSlider();
+            resetAutoPlay();
+        };
+
+        // 點擊點點切換
+        window.goToSlide = function(index) {
+            currentIndex = index;
+            updateSlider();
+            resetAutoPlay();
+        };
+
+        // 自動播放
+        function startAutoPlay() {
+            autoPlayInterval = setInterval(() => {
+                moveSlide(1);
+            }, 5000); // 5秒切換一次
+        }
+
+        // 重置計時器 (手動操作後重新計時)
+        function resetAutoPlay() {
+            clearInterval(autoPlayInterval);
+            startAutoPlay();
+        }
+
+        // 啟動
+        startAutoPlay();
+    }
+});
+</script>
+
 </body>
 </html>
