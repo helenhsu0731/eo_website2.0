@@ -438,17 +438,12 @@
 .addon-link:hover { background: #e6c200; }
 
 /* 5. CTA 區塊 */
-.join-cta-rest {
-    background-color: var(--primary-yellow); padding: 80px 20px; text-align: center;
-}
-.join-cta-rest h2 { font-size: 2.5rem; color: #000; font-weight: 900; margin-bottom: 15px; }
-.join-cta-rest p { font-size: 1.3rem; color: #333; margin-bottom: 40px; font-weight: 500; }
-.btn-black-cta {
-    background: #000; color: var(--primary-yellow); padding: 15px 50px; 
-    font-size: 1.2rem; font-weight: 700; border-radius: 5px; text-decoration: none;
-    transition: 0.3s; display: inline-block;
-}
-.btn-black-cta:hover { background: #333; color: #fff; transform: translateY(-3px); }
+ .join-cta-rest {background-color: var(--primary-yellow); padding: 80px 20px; text-align: center;}
+ .join-cta-rest h2 { font-size: 2.5rem; color: #000; font-weight: 900; margin-bottom: 15px; }
+ .join-cta-rest p { font-size: 1.3rem; color: #333; margin-bottom: 40px; font-weight: 500; }
+ .btn-black-cta { background: #000; color: var(--primary-yellow); padding: 15px 50px; font-size: 1.2rem; font-weight: 700; border-radius: 5px; text-decoration: none; transition: 0.3s; display: inline-block;}
+ .btn-black-cta:hover { background: #333; color: #fff; transform: translateY(-3px); }
+
 
 /* --- RWD --- */
 @media (max-width: 900px) {
@@ -465,7 +460,8 @@
 
 @media (max-width: 650px) {
     .flip-card-grid { grid-template-columns: 1fr; } /* 手機單欄 */
-    .join-cta-rest h2 { font-size: 1.5rem;}
+    .join-cta-rest h2 { font-size: 1.8rem;}
+    .join-cta-rest p { font-size: 1.2rem; }
 }
 </style>
 </head>
