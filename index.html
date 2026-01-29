@@ -28,7 +28,7 @@
 
 .home-hero .hero-title { font-size: 4.5rem; font-weight: 900; color: #fff; margin-bottom: 15px; line-light:0.8; }
 .home-hero .hero-title .highlight { line-height: 1.2; color: var(--primary-yellow)}
-.home-hero .hero-desc { font-size: 1.8rem; color: #eee; max-width: 800px; margin: 0 auto 30px; font-weight: 300; letter-spacing: 3px;}
+.home-hero .hero-desc { font-size: 1.6rem; color: #eee; max-width: 800px; margin: 0 auto 30px; font-weight: 250; letter-spacing: 3px;}
 .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 1; }
 .hero-content { position: relative; z-index: 2; }
 .hero-btns { display: flex; gap: 20px; justify-content: center; }
@@ -242,36 +242,21 @@
     opacity: 1;
 }
 
-/* 4. 優惠及聯絡 CTA (漸層背景) */
-.final-cta-section {
-    background-color: var(--primary-yellow);
-    padding: 80px 20px;
+/* 4. 優惠及聯絡 CTA */
+.join-cta-rest {
+    background-color: var(--primary-yellow); padding: 80px 20px; text-align: center;
 }
+.join-cta-rest h2 { font-size: 2.5rem; color: #000; font-weight: 900; margin-bottom: 15px; }
+.join-cta-rest p { font-size: 1.3rem; color: #333; margin-bottom: 40px; font-weight: 500; }
+.btn-black-cta {
+    background: #000; color: var(--primary-yellow); padding: 15px 50px; 
+    font-size: 1.2rem; font-weight: 700; border-radius: 5px; text-decoration: none;
+    transition: 0.3s; display: inline-block;
+}
+.btn-black-cta:hover { background: #333; color: #fff; transform: translateY(-3px); }
 
-.cta-flex {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: rgba(255, 255, 255, 0.3); /* 半透明白底 */
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 60px;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-}
 
-.cta-text h2 {
-    font-size: 2.5rem;
-    color: #3f2b96; /* 深藍色字，配合淡藍底 */
-    margin-bottom: 15px;
-    font-weight: 900;
-}
 
-.cta-text p {
-    font-size: 1.2rem;
-    color: #333;
-    font-weight: 500;
-    margin: 0;
-}
 
 /* RWD 適配 */
 @media (max-width: 900px) {
@@ -299,7 +284,7 @@
 
 <body>
 
-    <!-- 導航欄 (Header) -->
+   <!-- 導航欄 (Header) -->
     <header>
         <div class="container nav-wrapper">
             <!-- Logo 區 -->
@@ -312,13 +297,20 @@
             <div class="mobile-toggle" id="mobile-menu-btn"><i class="fas fa-bars"></i></div>
 
             <!-- 選單連結 -->
-            <ul class="nav-menu" id="nav-menu">                
-                <!-- 1. 首頁 (含下拉) -->
+            <ul class="nav-menu" id="nav-menu">
+                
+                <!-- 1. 首頁 -->
+               <li><a href="index.html">首頁</a></li>
+
+                <!-- 1-2 首頁第二期選單
                 <li class="dropdown">
                     <a href="index.html" class="active">首頁 <i class="fas fa-chevron-down toggle-icon"></i></a>
-                    <ul class="dropdown-menu"><li><a href="#about-section">關於我們</a></li></ul>
-                </li>                
-               <!-- 2. 產品服務  -->
+                    <ul class="dropdown-menu">
+                       <li><a href="#about-section">關於我們</a></li>
+                    </ul> 
+                </li>  -->
+
+                 <!-- 2. 產品服務  -->
                <li class="dropdown">
                <a href="#">產品服務 <i class="fas fa-chevron-down toggle-icon"></i></a>
     
@@ -327,17 +319,21 @@
         
                        <!-- 項目 1: 線上點餐 -->
                        <li class="dropdown-submenu">
-                           <a href="#" class="submenu-toggle">EATING-OUT 線上點餐 <i class="fas fa-chevron-right arrow-right"></i></a>            
+                           <a href="#" class="submenu-toggle">EATING-OUT 線上點餐 <i class="fas fa-chevron-right arrow-right"></i></a>
+            
                        <!-- 第二層下拉選單 -->
                          <ul class="submenu">
                              <li><a href="restaurant.html">餐廳端介紹</a></li>
                              <li><a href="customer.html">顧客端介紹</a></li>
                          </ul>
                        </li>
+
                        <!-- 項目 2: Insights -->
                        <li><a href="insights.html">Insights 洞察商家檔案數據</a></li>
+
                    </ul>
                 </li>
+
                 <!-- 3. 投資人 -->
                 <li><a href="investor.html">投資人專區</a></li>
 
@@ -388,7 +384,7 @@
                         <div class="slide-icon"><i class="fas fa-phone-slash"></i></div>
                         <h3>電話接不完，容易漏單？</h3>
                         <p>正忙著出餐還要接電話？手抄訂單字跡潦草導致做錯餐？<br>EATING-OUT 線上點餐系統，讓顧客自主下單，減少電話干擾，訂單準確無誤。</p>
-                        <a href="restaurant.html" class="btn-slide">了解智慧接單 &rarr;</a>
+                        <a href="restaurant.html" class="btn-slide">了解線上點餐 &rarr;</a>
                     </div>
                 </div>
 
@@ -401,7 +397,7 @@
                         <div class="slide-icon"><i class="fas fa-user-clock"></i></div>
                         <h3>現場排隊久候，客訴頻傳？</h3>
                         <p>尖峰時段人潮擁擠，顧客等到不耐煩？<br>支援預約外帶與內用掃碼，有效分流點餐人潮，縮短等待時間，提升顧客滿意度。</p>
-                        <a href="customer.html" class="btn-slide">看顧客端體驗 &rarr;</a>
+                        <a href="customer.html" class="btn-slide">查看更多好處 &rarr;</a>
                     </div>
                 </div>
 
@@ -413,7 +409,7 @@
                     <div class="slide-content">
                         <div class="slide-icon"><i class="fas fa-star-half-alt"></i></div>
                         <h3>Google 評論沒空管，形象受損？</h3>
-                        <p>負評長期滯留無人回應，影響新客上門意願？<br>EO Insights 幫您整合全台分店評論，AI 智能回覆助手，24小時守護您的數位門面。</p>
+                        <p>負評長期滯留無人回應，影響新客上門意願？<br>EO Insights 幫您整合全台分店評論，AI 智慧回覆助手，24小時守護您的數位門面。</p>
                         <a href="insights.html" class="btn-slide">探索 EO Insights &rarr;</a>
                     </div>
                 </div>
@@ -427,7 +423,7 @@
                         <div class="slide-icon"><i class="fas fa-hand-holding-usd"></i></div>
                         <h3>平台抽成高，利潤被吃掉？</h3>
                         <p>辛辛苦苦做生意，利潤卻被外送平台抽走一大半？<br>我們堅持免抽成模式，僅收合理的月費，讓每一筆訂單的利潤都實實在在回到您手中。</p>
-                        <a href="restaurant.html" class="btn-slide">查看收費方案 &rarr;</a>
+                        <a href="contact.html" class="btn-slide">免費諮詢方案 &rarr;</a>
                     </div>
                 </div>
 
@@ -470,17 +466,17 @@
 
             <!-- 特色 2 -->
             <div class="gallery-item">
-                <img src="adv2.jpg" alt="會員經營" class="gallery-img">
+                <img src="adv6.jpg" alt="會員經營" class="gallery-img">
                 <div class="gallery-overlay">
-                    <h3>熟客會員經營</h3>
-                    <p>自動累積會員，精準推播優惠。</p>
+                    <h3>客製化優惠設定</h3>
+                    <p>獨家離峰時段優惠，商機多更多。</p>
                     <a href="restaurant.html" class="btn btn-sm btn-primary">查看詳情</a>
                 </div>
             </div>
 
             <!-- 特色 3 -->
             <div class="gallery-item">
-                <img src="dashboard.png" alt="數據洞察" class="gallery-img">
+                <img src="adv4.jpg" alt="數據洞察" class="gallery-img">
                 <div class="gallery-overlay">
                     <h3>營運數據洞察</h3>
                     <p>視覺化報表，一眼看懂熱銷排行。</p>
@@ -498,11 +494,11 @@
                 </div>
             </div>
 
-            <!-- 特色 5 (大圖) -->
+            <!-- 特色 5 -->
             <div class="gallery-item">
-                <img src="adv3.jpg" alt="顧客體驗" class="gallery-img" style="object-fit: contain; background: #222;">
+                <img src="adv5.jpg" alt="顧客體驗" class="gallery-img">
                 <div class="gallery-overlay">
-                    <h3>極致流暢的點餐體驗</h3>
+                    <h3>流暢點餐體驗</h3>
                     <p>免下載 App 也能點，LINE / Web / App 全通路支援。</p>
                     <a href="customer.html" class="btn btn-sm btn-primary">查看詳情</a>
                 </div>
@@ -515,18 +511,18 @@
     </div>
 </section>
 
+
 <!-- 4. 優惠與聯絡 CTA -->
-<section class="final-cta-section">
-    <div class="container cta-flex">
-        <div class="cta-text">
-            <h2> EATING-OUT 協助您接下<br> <span style="color:#000;">第一筆線上生意</span></h2>
-            <p>現在預約，專人協助您免費體驗及菜單建置。</p>
-        </div>
-        <div class="cta-btn-box">
-            <a href="contact.html" class="btn btn-black-cta">預約免費諮詢</a>
-        </div>
+<section class="join-cta-rest">
+    <div class="container">
+        <h2>預約體驗EATING-OUT</h2>
+        <p>現在預約，免費體驗及菜單導入，協助您接下第一筆線上生意。</p>
+        <a href="contact.html" class="btn btn-black-cta">預約專人洽詢</a>
     </div>
 </section>
+
+
+
 
     
 
@@ -599,7 +595,7 @@
     <script src="script.js"></script>
 
 
-// --- 首頁痛點輪播 (Slider) ---
+// --- 輪播 (Slider) ---
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -642,7 +638,7 @@ document.addEventListener("DOMContentLoaded", function() {
         function startAutoPlay() {
             autoPlayInterval = setInterval(() => {
                 moveSlide(1);
-            }, 5000); // 5秒切換一次
+            }, 8000); // 5秒切換一次
         }
 
         // 重置計時器 (手動操作後重新計時)
