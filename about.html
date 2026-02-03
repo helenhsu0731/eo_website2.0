@@ -58,6 +58,67 @@
         .philosophy-img { position: relative;}
         .philosophy-img img { width:100%; border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); border-bottom: 8px solid var(--primary-yellow); border-right: 8px solid var(--primary-yellow);}
 
+
+    /* --- 引導點擊區塊 --- */
+
+/* 外部容器 */
+.glass-cta-section {
+    padding: 0 20px 80px 20px; /* 上方不留白(緊接理念)，下方留白 */
+    background-color: var(--bg-black); /* 配合上一區塊底色 */
+}
+
+/* 玻璃卡片本體 */
+.glass-cta-card {
+    /* 玻璃質感核心 */
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    
+    border-radius: 20px;
+    padding: 40px 60px;
+    max-width: 1000px; /* 限制寬度，不滿版 */
+    margin: 0 auto;    /* 置中 */
+    
+    /* 彈性排版：左文右按鈕 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover 微互動：整塊浮起 */
+.glass-cta-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* 文案樣式 */
+.glass-cta-card h3 {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+/* 按鈕群組 */
+.glass-btns {
+    display: flex;
+    gap: 15px;
+}
+
+/* 按鈕微調 (確保在玻璃底上清晰) */
+.glass-btns .btn {
+    padding: 10px 25px;
+    font-size: 1rem;
+    white-space: nowrap; /* 防止文字換行 */
+}
+
      
 
    /* --- 品牌歷程區塊  --- */ 
@@ -120,6 +181,31 @@
             .philosophy-img { order: -1; margin-bottom: 30px; }
             .stats-row { justify-content: flex-start; }
         }
+
+
+      /* RWD 手機版適配 */
+      @media (max-width: 768px) {
+         .glass-cta-card {
+             flex-direction: column; /* 改為垂直排列 */
+             text-align: center;
+             padding: 30px 20px;
+          }
+    
+         .glass-cta-card h3 {
+             font-size: 1.3rem;
+             line-height: 1.5;
+          }
+    
+          .glass-btns {
+             flex-direction: column; /* 按鈕也垂直堆疊 */
+             width: 100%;
+          }
+    
+        .glass-btns .btn {
+             width: 100%;
+         }
+      }
+
 
     
     </style>
@@ -236,6 +322,20 @@
             </div>
         </div>
     </section>
+
+     <!-- 玻璃質感 CTA 區塊 -->
+     <section class="glass-cta-section">
+         <div class="glass-cta-card">
+            <h3>如果你也認同，歡迎成為我們的合作夥伴</h3>
+             <div class="glass-btns">
+                 <!-- 按鈕一：黃色實心 -->
+                 <a href="contact.html" class="btn btn-primary">成為合作餐廳</a>
+                 <!-- 按鈕二：白色框線 -->
+                 <a href="restaurant.html" class="btn btn-outline-white">更多產品介紹</a>
+             </div>
+         </div>
+     </section>
+
 
     <!-- 3. 品牌歷程 -->
     <section class="section-padding timeline-section">
