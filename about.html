@@ -25,115 +25,94 @@
         /* --- Hero 區塊 --- */
         .about-hero {
             padding: 150px 20px 80px;
-            margin-top: -72px; /* 頂到 header */
+            margin-top: -72px; 
             text-align: center;
             background-color: var(--bg-black);
-            background-image: radial-gradient(#222 1px, transparent 1px); /* 網格紋理 */
+            background-image: radial-gradient(#222 1px, transparent 1px);
             background-size: 20px 20px;
         }
 
-        .about-hero h1 {
-            font-size: 3rem;
-            color: var(--primary-yellow);
-            font-weight: 900;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-        
-        .about-hero p {
-            font-size: 1.2rem;
-            color: var(--text-gray);
-            font-weight: 300;
-        }
+        .about-hero h1 { font-size: 3rem; color: var(--primary-yellow); font-weight: 900; margin-bottom: 20px; letter-spacing: 2px;}
+        .about-hero p { font-size: 1.2rem; color: var(--text-gray); font-weight: 300;}
 
         /* --- 成立理念區塊 --- */
-        .philosophy-section {
-            background-color: #1a1a1a;
-            padding: 100px 0;
-        }
-        
-        .philosophy-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
+        .philosophy-section { background-color: #1a1a1a; padding: 100px 0;}
+        .philosophy-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center;}
 
-        .philosophy-content h2 {
-            font-size: 2.2rem;
-            color: #fff;
-            margin-bottom: 30px;
-            border-left: 5px solid var(--primary-yellow);
-            padding-left: 15px;
-            font-weight: 900;
-        }
-
-        .philosophy-text h3 {
-            color: #fff;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 30px;
-        }
-
-        .philosophy-text p {
-            color: #ccc;
-            font-size: 1rem;
-            line-height: 1.8;
-            margin-bottom: 30px;
-        }
+        .philosophy-content h2 { font-size: 2.2rem; color: #fff; margin-bottom: 30px; border-left: 5px solid var(--primary-yellow); padding-left: 15px; font-weight: 900;}
+        .philosophy-text h3 { color: #fff; font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px;}
+        .philosophy-text p { color: #ccc; font-size: 1rem; line-height: 1.8; margin-bottom: 30px;}
 
 
         /* 打勾列表 */
-        .value-list {
-            list-style: none;
-            padding: 0;
-            margin-bottom: 40px;
-        }
-        .value-list li {
-            display: flex;
-            align-items: center;
-            margin-bottom: 12px;
-            color: #eee;
-            font-size: 1rem;
-        }
-        .value-list i {
-            color: var(--primary-yellow);
-            margin-right: 12px;
-            font-size: 1.2rem;
-        }
+        .value-list {  list-style: none; padding: 0; margin-bottom: 40px;}
+        .value-list li { display: flex; align-items: center; margin-bottom: 12px; color: #eee; font-size: 1rem;}
+        .value-list i { color: var(--primary-yellow); margin-right: 12px; font-size: 1.2rem;}
 
         /* 數據成績 */
-        .stats-row {
-            display: flex;
-            gap: 40px;
-        }
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--primary-yellow);
-            font-weight: 900;
-            margin: 0;
-        }
-        .stat-item p {
-            font-size: 1rem;
-            color: #888;
-            margin-top: 5px;
-        }
+        .stats-row { display: flex; gap: 40px;}
+        .stat-item h3 { font-size: 2.5rem; color: var(--primary-yellow); font-weight: 900; margin: 0;}
+        .stat-item p { font-size: 1rem; color: #888; margin-top: 5px;}
 
         /* 右側圖片 */
-        .philosophy-img {
-            position: relative;
-        }
-        .philosophy-img img {
-            width:100%;
-            border-radius: 12px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            /* 黃色底框裝飾 */
-            border-bottom: 8px solid var(--primary-yellow);
-            border-right: 8px solid var(--primary-yellow);
-        }
+        .philosophy-img { position: relative;}
+        .philosophy-img img { width:100%; border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); border-bottom: 8px solid var(--primary-yellow); border-right: 8px solid var(--primary-yellow);}
 
-        /* --- 品牌歷程區塊 (沿用首頁樣式但增加內容) --- */
-        /* 因為 style.css 已經有 timeline 樣式，這裡直接使用 HTML 結構即可 */
+     
+
+   /* --- 品牌歷程區塊  --- */ 
+
+
+     .timeline-section { background-color: var(--bg-dark-gray); padding-bottom: 100px;}
+     .timeline-scroll-box { max-height: none; overflow: visible; padding: 0;}
+
+     /* 2. 時間軸線條 */
+     .timeline { position: relative; max-width: 800px; margin: 0 auto;    padding: 20px 20px 20px 40px; }
+
+     /* 左側垂直線 */
+     .timeline::before { content: '';  position: absolute;  top: 0;  bottom: 0;  left: 26px; /* 線條位置 */  width: 2px;  background: #444; /* 深灰線條 */  transform: none;}
+
+     /* 3. 項目排版 */
+     .timeline-item {  margin-bottom: 40px;  position: relative;  width: 100%; padding-left: 30px;  opacity: 0;  transform: translateY(30px);  transition: all 0.6s ease-out;}
+     .timeline-item.show {  opacity: 1;  transform: translateY(0);}
+
+     /* 4. 時間節點 (黃點) */
+     .timeline-item::after {
+         content: '';
+         position: absolute;
+         left: -21px;
+         top: 12px;    
+         width: 12px;
+         height: 12px;
+         background: var(--primary-yellow);
+         border-radius: 50%;
+         box-shadow: 0 0 0 4px var(--bg-dark-gray); 
+         z-index: 2;
+     }
+
+
+     /* 5. 內容樣式 (無框線簡約風) */
+     .timeline-year {
+         font-size: 1.5rem;
+         font-weight: 900;
+         color: var(--primary-yellow);
+         margin-bottom: 8px;
+         display: block;
+         position: static; 7
+         opacity: 1;
+         text-shadow: none;
+      }
+
+     .timeline-content {background: transparent; border: none; padding: 0; box-shadow: none;}
+     .timeline-content::before { display: none; }
+     .timeline-content h3 { color: #fff; font-size: 1.3rem; font-weight: 700; margin-bottom: 10px;}
+     .timeline-content p { color: #ccc; font-size: 1rem; line-height: 1.6;}
+
+     /* Hover 微互動 */
+     .timeline-item:hover .timeline-year {
+         text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); /* 年份發光 */
+     }
+
         
         /* RWD */
         @media (max-width: 900px) {
@@ -141,6 +120,8 @@
             .philosophy-img { order: -1; margin-bottom: 30px; }
             .stats-row { justify-content: flex-start; }
         }
+
+    
     </style>
 
 <body>
@@ -421,23 +402,27 @@
     <script src="script.js"></script>
 
     <script>
-        // 頁面專屬：Timeline 捲動特效
-        document.addEventListener("DOMContentLoaded", function() {
-            const scrollContainer = document.querySelector('.timeline-scroll-box');
-            const timelineItems = document.querySelectorAll('.timeline-item');
+      // --- 品牌歷程捲動特效 ---
+document.addEventListener("DOMContentLoaded", function() {
+    const timelineItems = document.querySelectorAll('.timeline-item');
 
-            if (scrollContainer && timelineItems.length > 0) {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('show');
-                        }
-                    });
-                }, { root: scrollContainer, threshold: 0.2 });
-
-                timelineItems.forEach(item => observer.observe(item));
-            }
+    if (timelineItems.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                    // observer.unobserve(entry.target); 
+                }
+            });
+        }, { 
+            root: null, 
+            threshold: 0.1, 
+            rootMargin: "0px 0px -50px 0px" 
         });
+
+        timelineItems.forEach(item => observer.observe(item));
+    }
+});
     </script>
 
 </body>
