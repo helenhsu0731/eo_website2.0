@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快帶科技有限公司 | EATING-OUT</title>
+    <link rel="icon" href="favicon.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B6ZYLT0GXE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-B6ZYLT0GXE');
+    </script>
+</head>
+
+<style>
+        /* --- Hero 區塊 --- */
+        .about-hero {
+            padding: 150px 20px 80px;
+            margin-top: -72px; /* 頂到 header */
+            text-align: center;
+            background-color: var(--bg-black);
+            background-image: radial-gradient(#222 1px, transparent 1px); /* 網格紋理 */
+            background-size: 20px 20px;
+        }
+
+        .about-hero h1 {
+            font-size: 3rem;
+            color: var(--primary-yellow);
+            font-weight: 900;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        
+        .about-hero p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            font-weight: 300;
+        }
+
+        /* --- 成立理念區塊 --- */
+        .philosophy-section {
+            background-color: #1a1a1a;
+            padding: 100px 0;
+        }
+        
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .philosophy-content h2 {
+            font-size: 2.2rem;
+            color: #fff;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--primary-yellow);
+            padding-left: 15px;
+            font-weight: 900;
+        }
+
+        .philosophy-text h3 {
+            color: #fff;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .philosophy-text p {
+            color: #ccc;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+
+        /* 打勾列表 */
+        .value-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 40px;
+        }
+        .value-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            color: #eee;
+            font-size: 1rem;
+        }
+        .value-list i {
+            color: var(--primary-yellow);
+            margin-right: 12px;
+            font-size: 1.2rem;
+        }
+
+        /* 數據成績 */
+        .stats-row {
+            display: flex;
+            gap: 40px;
+        }
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--primary-yellow);
+            font-weight: 900;
+            margin: 0;
+        }
+        .stat-item p {
+            font-size: 1rem;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        /* 右側圖片 */
+        .philosophy-img {
+            position: relative;
+        }
+        .philosophy-img img {
+            width:100%;
+            border-radius: 12px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            /* 黃色底框裝飾 */
+            border-bottom: 8px solid var(--primary-yellow);
+            border-right: 8px solid var(--primary-yellow);
+        }
+
+        /* --- 品牌歷程區塊 (沿用首頁樣式但增加內容) --- */
+        /* 因為 style.css 已經有 timeline 樣式，這裡直接使用 HTML 結構即可 */
+        
+        /* RWD */
+        @media (max-width: 900px) {
+            .philosophy-grid { grid-template-columns: 1fr; }
+            .philosophy-img { order: -1; margin-bottom: 30px; }
+            .stats-row { justify-content: flex-start; }
+        }
+    </style>
+
+<body>
+
+   <!-- 導航欄 (Header) -->
+    <header>
+        <div class="container nav-wrapper">
+            <!-- Logo 區 -->
+            <a href="index.html" class="brand-logo">
+                <img src="logo.png" alt="EATING-OUT Logo">
+                <span class="brand-text">快帶科技有限公司</span>
+            </a>
+
+            <!-- 手機版漢堡按鈕 -->
+            <div class="mobile-toggle" id="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+
+            <!-- 選單連結 -->
+            <ul class="nav-menu" id="nav-menu">
+                
+      
+
+                <!-- 1-2 首頁第二期選單  -->
+                <li class="dropdown">
+                    <a href="index.html" class="active">首頁 <i class="fas fa-chevron-down toggle-icon"></i></a>
+                    <ul class="dropdown-menu">
+                       <li><a href="about.html">關於我們</a></li>
+                    </ul> 
+                </li>
+
+                 <!-- 2. 產品服務  -->
+               <li class="dropdown">
+               <a href="#">產品服務 <i class="fas fa-chevron-down toggle-icon"></i></a>
+    
+                   <!-- 第一層下拉選單 -->
+                   <ul class="dropdown-menu">
+        
+                       <!-- 項目 1: 線上點餐 -->
+                       <li class="dropdown-submenu">
+                           <a href="#" class="submenu-toggle">EATING-OUT 線上點餐 <i class="fas fa-chevron-right arrow-right"></i></a>
+            
+                       <!-- 第二層下拉選單 -->
+                         <ul class="submenu">
+                             <li><a href="restaurant.html">餐廳端介紹</a></li>
+                             <li><a href="customer.html">顧客端介紹</a></li>
+                         </ul>
+                       </li>
+
+                       <!-- 項目 2: Insights -->
+                       <li><a href="insights.html">Insights 洞察商家檔案數據</a></li>
+
+                   </ul>
+                </li>
+
+                <!-- 3. 投資人 -->
+                <li><a href="investor.html">投資人專區</a></li>
+
+                <!-- 4. 常見問題 -->
+                <li><a href="faq.html">常見問題</a></li>
+
+                <!-- 5. 聯絡我們 (按鈕) -->
+                <li><a href="contact.html" class="btn btn-primary nav-btn">聯絡我們</a></li>
+            </ul>
+        </div>
+    </header>
+
+
+ <!-- 1. Hero 區塊 -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>關於 EATING-OUT</h1>
+            <p>用科技連結美味，讓餐飲體驗更美好</p>
+        </div>
+    </section>
+
+    <!-- 2. 成立理念 -->
+    <section class="philosophy-section">
+        <div class="container">
+            <div class="philosophy-grid">
+                
+                <!-- 左側文案 -->
+                <div class="philosophy-content">
+                    <h2>成立理念</h2>
+                    <div class="philosophy-text">
+                        <h3>EATING-OUT 快帶科技成立於 2022 年，我們的初衷很簡單：<strong>「不想再讓美味的食物，被漫長的等待所辜負。」</strong></h3>
+                        <p>在數位化浪潮下，我們發現傳統餐飲業仍面臨人力短缺與接單混亂的挑戰。因此，我們打造了一套整合線上預約、自動接單與數據分析的 SaaS 餐飲平台，致力於成為商家與消費者之間最智慧的橋樑。</p>
+                    </div>
+                    
+                    <ul class="value-list">
+                        <li><i class="fas fa-check"></i> 協助傳統店家數位轉型</li>
+                        <li><i class="fas fa-check"></i> 解決接單痛點，提升時間價值</li>
+                        <li><i class="fas fa-check"></i> 降低小型餐飲店家數位點餐門檻</li>
+                    </ul>
+
+                    <div class="stats-row">
+                        <div class="stat-item">
+                            <h3>8000+</h3>
+                            <p>平台會員</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>140+</h3>
+                            <p>商家夥伴</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右側圖片 -->
+                <div class="philosophy-img">
+                    <!-- 請放入團隊工作照或會議照 -->
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="團隊工作照" >
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. 品牌歷程 -->
+    <section class="section-padding timeline-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>品牌歷程</h2>
+            </div>
+            
+            <div class="timeline-scroll-box">
+                <div class="timeline">
+                    
+                    <div class="timeline-item show">
+                        <div class="timeline-year">2022.05</div>
+                        <div class="timeline-content">
+                            <h3>公司成立</h3>
+                            <p>快帶科技正式成立，立志成為台灣餐飲數位轉型的最佳夥伴。</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">2023.05</div>
+                        <div class="timeline-content">
+                            <h3>榮獲 SBIR 創新研發補助</h3>
+                            <p>獲得經濟部中小企業處小型企業創新研發計畫 (SBIR) 補助，技術實力獲國家級肯定。</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">2023.08</div>
+                        <div class="timeline-content">
+                            <h3>Google for Startups</h3>
+                            <p>入選 Google for Startups Cloud Program 新創補助計畫，導入雲端技術優化平台效能。</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">2024.01</div>
+                        <div class="timeline-content">
+                            <h3>取得新型專利許可</h3>
+                            <p>通過經濟部智慧財產局之新型專利許可 <基於人工智慧之餐飲業營運分析系統>。</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">2024.02</div>
+                        <div class="timeline-content">
+                            <h3>進軍成大商圈</h3>
+                            <p>踏足台南成功大學商圈展開試營運，深耕在地學生與上班族市場。</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">2024.03</div>
+                        <div class="timeline-content">
+                            <h3>Microsoft 新創啟動計畫</h3>
+                            <p>通過 Microsoft for Startups Founders Hub 資格，獲得微軟技術資源挹注。</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">2024.04</div>
+                        <div class="timeline-content">
+                            <h3>進駐成大產學創新中心</h3>
+                            <p>正式成為成功大學產學創新總中心進駐企業，強化產學合作鏈結。</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">2024.12</div>
+                        <div class="timeline-content">
+                            <h3>永豐銀行金融整合計畫</h3>
+                            <p>獲選為永豐銀行智慧校園金融整合計畫之受輔導新創，佈局多元支付場景。</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">2025.03</div>
+                        <div class="timeline-content">
+                            <h3>Reserve with Google</h3>
+                            <p>成為 Google 預訂 (Reserve with Google) 供應商，流量入口再升級。</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">2025.05</div>
+                        <div class="timeline-content">
+                            <h3>好食好事加速器</h3>
+                            <p>入選 Haoshi 好食好事加速器飛輪計畫，加速商業模式驗證與市場擴張。</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+  <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-layout">
+            
+            <!-- 1. 公司資訊 -->
+ <div class="footer-info">
+                <div class="footer-logo">
+                    <img src="logo.png" alt="EATING-OUT">
+                    <span>快帶科技</span>
+                </div>
+                <h4 class="company-name">快帶科技有限公司</h4>
+                <ul class="info-list">
+                    <li><i class="fas fa-id-card"></i> 統編：90249191</li>
+                    <li><i class="fas fa-map-marker-alt"></i> 地址：台南市中西區民生路二段76號4樓A11</li>
+                    <li><i class="fas fa-phone-alt"></i> 電話：06-7030731</li>
+                    <li><i class="fas fa-envelope"></i> 信箱：support@eating-out.co</li>
+                </ul>
+            </div>
+
+            <!-- 2. 網站地圖 (使用 Grid 雙欄) -->
+            <div class="footer-sitemap">
+                <h3>網站地圖</h3>
+                <div class="sitemap-grid">
+                    <!-- 左欄 -->
+                    <ul class="col-left">
+                        <li><a href="index.html">品牌首頁</a></li>
+                        <li><a href="insights.html">EO Insight</a></li>
+                        <li><a href="restaurant.html">餐廳端服務</a></li>
+                        <li><a href="customer.html">顧客端服務</a></li>
+                    </ul>
+                    <!-- 右欄 -->
+                    <ul class="col-right">
+                       
+                        <li><a href="investor.html">投資人專區</a></li>
+                        <li><a href="faq.html">常見問題</a></li>
+                        <li><a href="about.html">關於我們</a></li>
+                        <li><a href="contact.html">聯絡我們</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 3. 條款與社群 -->
+           <div class="footer-social">
+                <h3>條款與社群</h3>
+                <ul>
+                    <li><a href="https://www.privacypolicies.com/live/3c39b265-99a9-4bb6-9d44-1a0d38e95668" target="_blank">服務條款</a></li>
+                    <li><a href="https://www.privacypolicies.com/live/0a9ea377-a2b5-4dcc-b830-562689baf47e" target="_blank">隱私權政策</a></li>
+                </ul>
+                <div class="social-icons-group">
+                    <a href="https://www.facebook.com/eatingoutTW" target="_blank" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/eatingouttw/" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
+                    <a href="https://line.me/R/ti/p/@518vmbpw?oat_content=url" target="_blank" class="social-btn"><i class="fab fa-line"></i></a>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="copyright">
+            &copy; 2026 EATING-OUT Technology Co., Ltd. All Rights Reserved.
+        </div>
+    </div>
+</footer>
+
+<!-- JS -->
+    <script src="script.js"></script>
+
+    <script>
+        // 頁面專屬：Timeline 捲動特效
+        document.addEventListener("DOMContentLoaded", function() {
+            const scrollContainer = document.querySelector('.timeline-scroll-box');
+            const timelineItems = document.querySelectorAll('.timeline-item');
+
+            if (scrollContainer && timelineItems.length > 0) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('show');
+                        }
+                    });
+                }, { root: scrollContainer, threshold: 0.2 });
+
+                timelineItems.forEach(item => observer.observe(item));
+            }
+        });
+    </script>
+
+</body>
+</html>

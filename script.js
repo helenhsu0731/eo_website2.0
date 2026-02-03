@@ -60,21 +60,5 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // 3. 品牌歷程捲動特效
-    const scrollContainer = document.querySelector('.timeline-scroll-box');
-    const timelineItems = document.querySelectorAll('.timeline-item');
-
-    if (scrollContainer && timelineItems.length > 0) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                }
-            });
-        }, { root: scrollContainer, threshold: 0.2 });
-
-        timelineItems.forEach(item => observer.observe(item));
-    }
-
-
+   
 });
